@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Noto+Serif+KR:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #FDFCFB;
+  --color-brand-ink: #2D2926;
+  --color-brand-accent: #8C7861;
+  
+  --font-georgia: "Georgia", serif;
+  --font-verdana: "Verdana", sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif KR", serif;
+  --font-sans: "Inter", "Noto Sans KR", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-ink font-sans selection:bg-brand-accent/20;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .serif {
+    @apply font-serif;
+  }
+
+  .italic-serif {
+    @apply font-serif italic;
+  }
+  .serif-kor {
+    font-family: 'Noto Serif KR', serif;
+  }
+}
+
+.markdown-body h1 {
+  @apply text-4xl font-serif mb-6;
+}
+
+.markdown-body p {
+  @apply mb-4 leading-relaxed opacity-80;
+}

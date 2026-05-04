@@ -1,0 +1,335 @@
+import { useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
+import { Section, Reveal } from '../components/Common';
+
+import heroImage from "../images/main/hero.jpg";
+import mainBackground01 from "../images/main/background.jpg";
+import mainMiddleProduct from "../images/portfolio/product.png";
+import mainMiddlePackage from "../images/portfolio/package.png";
+import mainMiddleBranding from "../assets/images/regenerated_image_1777880703462.png";
+import mainMiddleProject from "../images/portfolio/project.png";
+// import branding02 from "../images/portfolio/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
+// import package02 from "../images/portfolio/package_02.jpg"; // 포트폴리오 추가 이미지 예정
+
+import mainBottomJournal01 from "../images/main/journal01.jpg";
+// import journal02 from "../images/main/journal02.jpg"; // 저널 추가 이미지 예정
+// import journal03 from "../images/main/journal03.jpg"; // 저널 추가 이미지 예정
+
+
+const Hero = () => (
+  <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div className="absolute inset-0 z-0">
+      <img
+        src={heroImage}
+        alt="Hero Background"
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-black/25" />
+    </div>
+    <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <Reveal>
+        <h1 className="text-4xl md:text-6xl serif-kor italic mb-8 text-white leading-tight drop-shadow-lg">
+          Little things, <br className="md:hidden" /> More Precious
+        </h1>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <h2 className="text-lg md:text-xl font-bold mb-10 serif tracking-widest text-white/90 drop-shadow-md">
+          아날로그의 온기로 일상의 가치를 디자인합니다
+        </h2>
+      </Reveal>
+      <Reveal delay={0.4}>
+        <div className="w-16 h-px bg-white/40 mx-auto mb-8" />
+        <p className="text-[10px] md:text-xs text-white/70 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-sm">
+          소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
+          캘리엠이 전하는 따스한 시각 언어
+        </p>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const About = () => (
+  <Section id="about" className="flex flex-col md:flex-row gap-16 items-start !ml-[312.5px] !pt-[150px] !pb-[150px] !pl-[97px]">
+    <div className="md:w-1/2">
+      <Reveal>
+        <h2 className="text-2xl md:text-3xl font-bold leading-tight serif">
+          아날로그의 온기로 <br /> 일상의 가치를 디자인합니다
+        </h2>
+      </Reveal>
+    </div>
+    <div className="md:w-1/2">
+      <Reveal delay={0.2}>
+        <div className="space-y-6 text-sm md:text-base leading-relaxed opacity-80">
+          <p>
+            우리는 빠르게 변화하는 디지털 환경 속에서도 변하지 않는 본질의 가치를 믿습니다. 
+            손끝에서 전해지는 질감, 종이 위의 번짐, 그리고 그 안에 담긴 시간의 흔적들.
+          </p>
+          <p className="text-left">
+            캘리엠은 이러한 아날로그적 정서를 현대적 디자인 솔루션으로 해석하여, 
+            단순히 아름다운 결과물을 넘어 사용자의 마음과 맞닿는 경험을 창조합니다.
+          </p>
+          <div className="pt-4">
+            <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 hover:gap-4 transition-all">
+              Learn More <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </Section>
+);
+
+const BrandCore = () => (
+  <Section id="philosophy" className="my-12 !px-0 !w-[1920px] !max-w-none">
+    <div
+      className="relative py-[200px] overflow-hidden"
+      style={{
+        backgroundImage: `url(${mainBackground01})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
+    >
+      <div className="absolute inset-0 bg-white/15" />
+
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 px-6 md:px-[416px]">
+        {[
+          {
+            title: "Philosophy",
+            subtitle: "본질의 온기",
+            content: "모든 존재의 진정성을 바탕으로 감성으로 시각화합니다. 우리는 겉으로 보이는 화려함보다 숨겨진 본질의 가치를 깊이 있게 들여다봅니다."
+          },
+          {
+            title: "Vision",
+            subtitle: "감성의 허브",
+            content: "아날로그 감성과 미래 기술이 공존하는 글로벌 디자인 허브를 지향합니다. 인류의 보편적 정서를 담아 전 세계로 뻗어나가는 디자인을 만듭니다."
+          },
+          {
+            title: "Mission",
+            subtitle: "가치의 연결",
+            content: "가치의 발견(Discover), 감성의 디자인(Design), 사회적 연결(Connect)을 통해 사람과 지역사회를 잇는 공감의 채널을 형성합니다."
+          }
+        ].map((item, idx) => (
+          <Reveal key={item.title} delay={idx * 0.1}>
+              <div className="space-y-6 text-center">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#000000] font-bold">{item.title}</span>
+              <h3 className="text-2xl md:text-3xl serif-kor text-[#000000]">{item.subtitle}</h3>
+              <p className="text-sm leading-relaxed text-[#000000] font-light max-w-xs mx-auto">{item.content}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </Section>
+);
+
+const Portfolio = () => {
+  const categories = [
+    {
+      id: 'product_featured',
+      type: 'PRODUCT',
+      image: mainMiddleProduct,
+      cols: 'col-span-12'
+    },
+    {
+      id: 'package',
+      type: 'PACKAGE',
+      image: mainMiddlePackage,
+      cols: 'col-span-12 md:col-span-4'
+    },
+    {
+      id: 'branding',
+      type: 'BRANDING',
+      image: mainMiddleBranding,
+      cols: 'col-span-12 md:col-span-4'
+    },
+    {
+      id: 'project',
+      type: 'PROJECT',
+      image: mainMiddleProject,
+      cols: 'col-span-12 md:col-span-4'
+    }
+  ];
+
+  return (
+    <Section id="portfolio" className="space-y-12">
+      <Reveal>
+        <div className="flex justify-between items-end border-b border-brand-ink/10 pb-8">
+          <h2 className="text-4xl serif">Value-Driven Portfolio</h2>
+          <span className="text-xs font-bold opacity-30 italic-serif text-lg">Selected Works</span>
+        </div>
+      </Reveal>
+      <div className="grid grid-cols-12 gap-12">
+        {categories.map((cat, idx) => (
+          <div key={cat.id} className={cn("group cursor-pointer", cat.cols)}>
+            <Reveal delay={idx * 0.1}>
+              <div className={cn("overflow-hidden relative aspect-square mb-6", cat.id === 'product_featured' && "!h-[500px] !w-[1089px] !aspect-auto mx-auto")}>
+               <img 
+                src={cat.image} 
+                alt={cat.type} 
+                className="w-full h-full object-contain transition-transform duration-[2s]"
+                referrerPolicy="no-referrer"
+              />
+              {/* READ MORE */}
+              <span 
+                className={cn(
+                  "absolute inline-flex items-center justify-center rounded-full border border-white px-8 py-3 text-[12px] font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 group-hover:bg-white group-hover:text-brand-ink group-hover:border-white",
+                  cat.id === "product_featured"
+                    ? "left-17 bottom-15"
+                    : "left-1/2 bottom-6 -translate-x-1/2"
+                )}
+              >
+                READ MORE
+              </span>
+              <div className="absolute inset-0 bg-brand-bg/10 group-hover:bg-transparent transition-colors duration-700" />
+            </div>
+
+            <div className={cn("space-y-4 transition-transform duration-500", cat.id === 'product_featured' ? "text-left !w-[1089px] mx-auto" : "text-left")}>
+              <span className="text-[30px] font-verdana font-bold uppercase block text-brand-accent">
+                {cat.type}
+              </span>
+            </div>
+            </Reveal>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+const BrandJournal = () => (
+  <Section id="journal" className="flex flex-col md:flex-row gap-12 relative">
+    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[300px] md:h-[600px] w-full overflow-hidden rounded-2xl">
+  <Reveal>
+    <div className="h-[300px] md:h-[600px] w-full">
+      <img 
+        src={mainBottomJournal01}
+        alt="Brand Journal" 
+        className="w-full h-full object-cover object-center"
+        referrerPolicy="no-referrer"
+      />
+    </div>
+  </Reveal>
+</div>
+    <div className="md:w-1/2 space-y-16">
+      <div className="space-y-3">
+        <Link to="/journals" className="group block">
+          <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90 group-hover:text-brand-accent transition-colors">Brand Journals</h2>
+          <p className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">캘리엠의 기록들 →</p>
+        </Link>
+      </div>
+      <div className="space-y-12 divide-y divide-brand-ink/5">
+        {[
+          {
+            date: "2026.04.23",
+            title: "가정의 달 기념 신상 봉투 출시",
+            desc: "5월, 가정의 달을 맞이하여 사랑을 전달할 수 있는 캘리엠의 봉투 4종을 제작하였습니다.",
+            link: "/journal/family-month-envelope"
+          },
+          {
+            date: "2026.01.15",
+            title: "2025 고양 인쇄인의 날, 고양 인쇄기술경진대회 금상 수상",
+            desc: "출품작인 '밀크티백 센트 형태의 인쇄패키지 작품'이 금상을 수상하였습니다."
+          },
+          {
+            date: "2025.03.17",
+            title: "중소기업혁신바우처 수행기관 브랜드 지원 최종 승인",
+            desc: "8개월간 진행된 브랜드 개발 프로젝트로 캘리엠의 브랜드 고유의 색을 더 깊이 있게 정의해보았습니다."
+          },
+          {
+            date: "2025.02.20",
+            title: "전시 참가: 시와 찻잔 사이 (교하도서관)",
+            desc: "1월 7일부터 23일까지 전시회가 진행됩니다."
+          }
+        ].map((item, idx) => (
+          <Reveal key={idx} delay={idx * 0.1}>
+            <Link 
+              to={item.link || '#'} 
+              className={cn(
+                "pt-12 first:pt-0 group block",
+                item.link ? "cursor-pointer" : "cursor-default pointer-events-none"
+              )}
+            >
+              <span className="text-[10px] font-bold tracking-widest opacity-40 mb-3 block">{item.date}</span>
+              <h3 className="text-xl serif-kor mb-4 group-hover:text-brand-accent transition-colors">{item.title}</h3>
+              <p className="text-sm opacity-60 leading-relaxed font-light">{item.desc}</p>
+              <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">
+                Read More <ArrowRight className="w-3 h-3" />
+              </div>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </Section>
+);
+
+const Contact = () => (
+  <Section id="contact" className="py-32">
+    <div className="bg-brand-accent/5 rounded-[3rem] p-12 md:p-24 text-center space-y-12">
+      <Reveal>
+        <span className="italic-serif text-brand-accent text-lg">Connect with us</span>
+        <h2 className="text-2xl md:text-4xl serif mt-4">
+          당신의 소중한 가치에 <br /> 캘리엠의 온기를 더해보세요
+        </h2>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <form className="max-w-xl mx-auto space-y-6 text-left" onSubmit={(e) => e.preventDefault()}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input 
+              type="text" 
+              placeholder="Your Name" 
+              className="w-full bg-brand-bg border border-brand-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors"
+            />
+            <input 
+              type="email" 
+              placeholder="Email Address" 
+              className="w-full bg-brand-bg border border-brand-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors"
+            />
+          </div>
+          <textarea 
+            placeholder="Tell us about your project" 
+            rows={4} 
+            className="w-full bg-brand-bg border border-brand-ink/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors resize-none"
+          />
+          <button className="w-full bg-brand-ink text-brand-bg rounded-xl py-4 font-semibold text-sm hover:opacity-90 transition-opacity tracking-widest uppercase">
+            Send Inquiry
+          </button>
+        </form>
+      </Reveal>
+    </div>
+  </Section>
+);
+
+const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
+
+  return (
+    <div className="selection:bg-brand-accent/20">
+      <Navigation />
+      <Hero />
+      <About />
+      <BrandCore />
+      <Portfolio />
+      <BrandJournal />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
+
+export default Home;
