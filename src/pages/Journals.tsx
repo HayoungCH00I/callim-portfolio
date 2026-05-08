@@ -5,7 +5,7 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Reveal, Section } from '../components/Common';
 import { cn } from '../lib/utils';
-import mainBottomJournal01 from "../images/journal/journal01.jpg";
+import journalListItem01 from "../images/journal/journal01.jpg";
 // import journal02 from "../images/journal/journal02.jpg"; // 추가 저널 리스트 이미지 예정
 
 
@@ -20,7 +20,7 @@ const Journals = () => {
       title: "가정의 달 기념 신상 봉투 출시",
       desc: "5월, 가정의 달을 맞이하여 사랑을 전달할 수 있는 캘리엠의 봉투 4종을 제작하였습니다.",
       link: "/journal/family-month-envelope",
-      image: mainBottomJournal01
+      image: journalListItem01
     },
     {
       date: "2026.01.15",
@@ -72,11 +72,11 @@ const Journals = () => {
                   item.link ? "cursor-pointer" : "cursor-default opacity-80"
                 )}
               >
-                <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-brand-ink/5">
+                <div className="aspect-[4/3] overflow-hidden bg-brand-ink/5">
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                    className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
                 </div>
@@ -88,8 +88,8 @@ const Journals = () => {
                   <p className="text-sm opacity-60 leading-relaxed font-light line-clamp-2">
                     {item.desc}
                   </p>
-                  <div className="pt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">
-                    Read Full Story <ArrowRight className="w-3 h-3" />
+                  <div className="pt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.15em] border-b border-brand-ink/20 pb-1 opacity-0 group-hover:opacity-80 transition-all duration-300">
+                    READ FULL STORY <span className="text-base leading-none">→</span>
                   </div>
                 </div>
               </Link>

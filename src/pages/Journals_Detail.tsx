@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Reveal } from '../components/Common';
-import mainBottomJournal01 from "../images/journal/journal01.jpg";
+import journalHeroImage from "../images/journal/journal01.jpg";
 
 const Journals_Detail = () => {
   useEffect(() => {
@@ -37,9 +37,9 @@ const Journals_Detail = () => {
       {/* Image Section */}
       <section className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto py-12">
         <Reveal delay={0.2}>
-          <div className="rounded-[2rem] overflow-hidden aspect-[16/9] md:aspect-[21/9]">
+          <div className="overflow-hidden aspect-[16/9] md:aspect-[21/9]">
             <img 
-              src={mainBottomJournal01} 
+              src={journalHeroImage} 
               alt="Family Month Envelope" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"

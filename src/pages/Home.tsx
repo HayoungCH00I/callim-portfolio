@@ -8,10 +8,10 @@ import { Section, Reveal } from '../components/Common';
 
 import heroImage from "../images/main/hero.jpg";
 import mainBackground01 from "../images/main/background.jpg";
-import mainMiddleProduct from "../images/portfolio/product.png";
-import mainMiddlePackage from "../images/portfolio/package.png";
-import mainMiddleBranding from "../assets/images/regenerated_image_1777880703462.png";
-import mainMiddleProject from "../images/portfolio/project.png";
+import mainMiddleProduct from "../images/portfolio/product.jpg";
+import mainMiddlePackage from "../images/portfolio/package.jpg";
+import mainMiddleBranding from "../images/portfolio/branding.jpg";
+import mainMiddleProject from "../images/portfolio/project.jpg";
 // import branding02 from "../images/portfolio/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
 // import package02 from "../images/portfolio/package_02.jpg"; // 포트폴리오 추가 이미지 예정
 
@@ -135,15 +135,15 @@ const Portfolio = () => {
       cols: 'col-span-12'
     },
     {
-      id: 'package',
-      type: 'PACKAGE',
-      image: mainMiddlePackage,
-      cols: 'col-span-12 md:col-span-4'
-    },
-    {
       id: 'branding',
       type: 'BRANDING',
       image: mainMiddleBranding,
+      cols: 'col-span-12 md:col-span-4'
+    },
+    {
+      id: 'package',
+      type: 'PACKAGE',
+      image: mainMiddlePackage,
       cols: 'col-span-12 md:col-span-4'
     },
     {
@@ -159,41 +159,45 @@ const Portfolio = () => {
       <Reveal>
         <div className="flex justify-between items-end border-b border-brand-ink/10 pb-8">
           <h2 className="text-4xl serif">Value-Driven Portfolio</h2>
-          <span className="text-xs font-bold opacity-30 italic-serif text-lg">Selected Works</span>
+          <Link to="/journals" className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2 group">
+            View Journals <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </Reveal>
       <div className="grid grid-cols-12 gap-12">
         {categories.map((cat, idx) => (
-          <div key={cat.id} className={cn("group cursor-pointer", cat.cols)}>
+          <Link 
+            key={cat.id} 
+            to="/journals"
+            className={cn("group cursor-pointer block", cat.cols)}
+          >
             <Reveal delay={idx * 0.1}>
               <div className={cn("overflow-hidden relative aspect-square mb-6", cat.id === 'product_featured' && "!h-[500px] !w-[1089px] !aspect-auto mx-auto")}>
                <img 
                 src={cat.image} 
                 alt={cat.type} 
-                className="w-full h-full object-contain transition-transform duration-[2s]"
+                className="w-full h-full object-contain"
                 referrerPolicy="no-referrer"
               />
+
+              <div className="absolute inset-0 bg-brand-bg/10 group-hover:bg-transparent transition-colors duration-700" />
+
               {/* READ MORE */}
               <span 
                 className={cn(
-                  "absolute inline-flex items-center justify-center rounded-full border border-white px-8 py-3 text-[12px] font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 group-hover:bg-white group-hover:text-brand-ink group-hover:border-white",
+                   "absolute z-10 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.15em] border-b pb-1 transition-all duration-300",
                   cat.id === "product_featured"
-                    ? "left-17 bottom-15"
-                    : "left-1/2 bottom-6 -translate-x-1/2"
+                    ? "left-[490px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
+                    : "left-[220px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
                 )}
               >
                 READ MORE
+                <span className="text-base leading-none">→</span>
               </span>
               <div className="absolute inset-0 bg-brand-bg/10 group-hover:bg-transparent transition-colors duration-700" />
             </div>
-
-            <div className={cn("space-y-4 transition-transform duration-500", cat.id === 'product_featured' ? "text-left !w-[1089px] mx-auto" : "text-left")}>
-              <span className="text-[30px] font-verdana font-bold uppercase block text-brand-accent">
-                {cat.type}
-              </span>
-            </div>
             </Reveal>
-          </div>
+          </Link>
         ))}
       </div>
     </Section>
@@ -202,7 +206,7 @@ const Portfolio = () => {
 
 const BrandJournal = () => (
   <Section id="journal" className="flex flex-col md:flex-row gap-12 relative">
-    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[300px] md:h-[600px] w-full overflow-hidden rounded-2xl">
+    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[300px] md:h-[600px] w-full overflow-hidden">
   <Reveal>
     <div className="h-[300px] md:h-[600px] w-full">
       <img 
@@ -250,14 +254,14 @@ const BrandJournal = () => (
               to={item.link || '#'} 
               className={cn(
                 "pt-12 first:pt-0 group block",
-                item.link ? "cursor-pointer" : "cursor-default pointer-events-none"
+                item.link ? "cursor-pointer" : "cursor-default"
               )}
             >
               <span className="text-[10px] font-bold tracking-widest opacity-40 mb-3 block">{item.date}</span>
-              <h3 className="text-xl serif-kor mb-4 group-hover:text-brand-accent transition-colors">{item.title}</h3>
+              <h3 className="text-xl serif-kor mb-4duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
               <p className="text-sm opacity-60 leading-relaxed font-light">{item.desc}</p>
-              <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all">
-                Read More <ArrowRight className="w-3 h-3" />
+              <div className="mt-4 flex items-center gap-2 group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-60 -translate-x-4 group-hover:translate-x-0 transition-all ease-out">
+                READ MORE <span className="text-base leading-none">→</span>
               </div>
             </Link>
           </Reveal>
@@ -272,7 +276,7 @@ const Contact = () => (
     <div className="bg-brand-accent/5 rounded-[3rem] p-12 md:p-24 text-center space-y-12">
       <Reveal>
         <span className="italic-serif text-brand-accent text-lg">Connect with us</span>
-        <h2 className="text-2xl md:text-4xl serif mt-4">
+        <h2 className="text-[28px] serif mt-4">
           당신의 소중한 가치에 <br /> 캘리엠의 온기를 더해보세요
         </h2>
       </Reveal>
