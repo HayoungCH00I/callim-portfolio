@@ -24,9 +24,9 @@ export const Navigation = ({ transparent = false }: { transparent?: boolean }) =
       "fixed top-0 left-0 w-full z-50 transition-colors duration-500",
       transparent && !isOpen ? "bg-transparent" : "bg-brand-bg/50 backdrop-blur-xl"
     )}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-24 flex items-center justify-between">
         <Link to="/" className="z-50 block" onClick={() => setIsOpen(false)}>
-          <img src={logoImage} alt="CALLI-M" className="h-10 w-auto" />
+          <img src={logoImage} alt="CALLI-M" className="h-7 md:h-10 w-auto" />
         </Link>
         
         {/* Desktop Menu */}
