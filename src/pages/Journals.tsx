@@ -51,8 +51,8 @@ const Journals = () => {
         <Reveal>
           <div className="space-y-6 text-center md:text-left">
             <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">Calli-M Journals</span>
-            <h1 className="text-4xl md:text-6xl serif-kor leading-tight text-brand-ink/90">Brand Journals</h1>
-            <p className="text-lg opacity-60 serif leading-relaxed max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-serif tracking-tight leading-tight text-brand-ink/90">Brand Journals</h1>
+            <p className="text-lg opacity-60 serif-kor leading-relaxed max-w-2xl">
               캘리엠의 소식과 프로젝트, 수상 기록, <br className="hidden md:block" />
               전시와 상품 이야기를 기록합니다.
             </p>

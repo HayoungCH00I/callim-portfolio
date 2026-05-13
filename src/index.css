@@ -1,15 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Noto+Serif+KR:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
+
+/* Pretendard: 본문 / UI */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* MaruBuri: 한글 제목 */
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('./fonts/MaruBuri-ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('./fonts/MaruBuri-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('./fonts/MaruBuri-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('./fonts/MaruBuri-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MaruBuri';
+  src: url('./fonts/MaruBuri-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --color-brand-bg: #FDFCFB;
   --color-brand-ink: #2D2926;
   --color-brand-accent: #8C7861;
-  
+
   --font-georgia: "Georgia", serif;
   --font-verdana: "Verdana", sans-serif;
-  --font-serif: "Playfair Display", "Noto Serif KR", serif;
-  --font-sans: "Inter", "Noto Sans KR", sans-serif;
+
+  /* 영어 제목 */
+  --font-serif: "Nanum Myeongjo", "Playfair Display", serif;
+
+  /* 본문 / UI */
+  --font-sans: "Pretendard", sans-serif;
+
+  /* 한글 제목 */
+  --font-maruburi: "MaruBuri", serif;
 }
 
 @layer base {
@@ -25,8 +82,22 @@
   .italic-serif {
     @apply font-serif italic;
   }
+
   .serif-kor {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'MaruBuri', serif;
+  }
+
+  .serif-en {
+    font-family: 'Nanum Myeongjo', serif;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 

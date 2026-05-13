@@ -26,7 +26,7 @@ const Journals_Detail = () => {
               <div className="w-8 h-px bg-brand-ink/20" />
               <span>By Calli-M</span>
             </div>
-            <p className="text-lg opacity-70 serif leading-relaxed max-w-2xl">
+            <p className="text-lg opacity-70 serif-kor leading-relaxed max-w-2xl">
               5월 가정의 달을 맞이하여 사랑을 전달할 수 있는 <br className="hidden md:block" />
               캘리엠의 봉투 4종을 제작하였습니다.
             </p>
@@ -52,14 +52,14 @@ const Journals_Detail = () => {
       <section className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto py-24 flex flex-col md:flex-row gap-16">
         <div className="md:w-1/3">
           <Reveal delay={0.4}>
-            <p className="text-brand-accent serif text-xl md:text-2xl leading-relaxed italic">
+            <p className="text-brand-accent serif-kor text-xl md:text-2xl leading-relaxed italic">
               “꽃을 건네듯 마음을 담아 <br />
               오래 두고 볼 수 있는 <br />
               봉투와 카드를 제작했습니다.”
             </p>
           </Reveal>
         </div>
-        <div className="md:w-2/3 space-y-8 text-sm md:text-base leading-loose opacity-80 serif">
+        <div className="md:w-2/3 space-y-8 text-sm md:text-base leading-loose opacity-80">
           <Reveal delay={0.5}>
             <p>
               캘리엠은 가정의 달을 맞아 마음을 전하는 작은 방법을 고민했습니다. 

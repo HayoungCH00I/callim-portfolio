@@ -7,13 +7,14 @@ import { Footer } from '../components/Footer';
 import { Section, Reveal } from '../components/Common';
 
 import heroImage from "../images/main/hero.jpg";
-import mainBackground01 from "../images/main/background.jpg";
-import mainMiddleProduct from "../images/portfolio/product.jpg";
-import mainMiddlePackage from "../images/portfolio/package.jpg";
-import mainMiddleBranding from "../images/portfolio/branding.jpg";
-import mainMiddleProject from "../images/portfolio/project.jpg";
-// import branding02 from "../images/portfolio/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
-// import package02 from "../images/portfolio/package_02.jpg"; // 포트폴리오 추가 이미지 예정
+import heroMobileImage from "../images/main/hero_mobile.webp";
+import mainMiddleProduct from "../images/main/product.jpg";
+import mainMiddleProductMobile from "../images/main/product_mobile.webp";
+import mainMiddlePackage from "../images/main/package.jpg";
+import mainMiddleBranding from "../images/main/branding.jpg";
+import mainMiddleProject from "../images/main/project.jpg";
+// import branding02 from "../images/main/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
+// import package02 from "../images/main/package_02.jpg"; // 포트폴리오 추가 이미지 예정
 
 import mainBottomJournal01 from "../images/main/journal01.jpg";
 // import journal02 from "../images/main/journal02.jpg"; // 저널 추가 이미지 예정
@@ -24,26 +25,31 @@ const Hero = () => (
   <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
     <div className="absolute inset-0 z-0">
       <img
+        src={heroMobileImage}
+        alt="Hero Background Mobile"
+        className="md:hidden w-full h-full object-cover object-center"
+      />
+      <img
         src={heroImage}
         alt="Hero Background"
-        className="w-full h-full object-cover"
+        className="hidden md:block w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/25" />
     </div>
     <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <Reveal>
-        <h1 className="text-4xl md:text-6xl serif-kor italic mb-8 text-white leading-tight drop-shadow-lg">
+        <h1 className="text-[40px] md:text-[66px] font-serif italic mb-8 text-white leading-tight drop-shadow-lg">
           Little things, <br className="md:hidden" /> More Precious
         </h1>
       </Reveal>
       <Reveal delay={0.2}>
-        <h2 className="text-lg md:text-xl font-bold mb-10 serif tracking-widest text-white/90 drop-shadow-md">
+        <h2 className="text-[20px] md:text-[22px] font-bold mb-10 serif-kor tracking-widest text-white/90 drop-shadow-md">
           아날로그의 온기로 일상의 가치를 디자인합니다
         </h2>
       </Reveal>
       <Reveal delay={0.4}>
         <div className="w-16 h-px bg-white/40 mx-auto mb-8" />
-        <p className="text-[10px] md:text-xs text-white/70 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-sm">
+        <p className="text-[11px] md:text-[13px] text-white/70 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-sm">
           소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
           캘리엠이 전하는 따스한 시각 언어
         </p>
@@ -53,10 +59,10 @@ const Hero = () => (
 );
 
 const About = () => (
-  <Section id="about" className="flex flex-col md:flex-row gap-16 items-start !ml-[312.5px] !pt-[150px] !pb-[150px] !pl-[97px]">
+  <Section id="about" className="flex flex-col md:flex-row gap-16 lg:gap-24 items-start py-20 md:!pt-[150px] md:!pb-[150px]">
     <div className="md:w-1/2">
       <Reveal>
-        <h2 className="text-2xl md:text-3xl font-bold leading-tight serif">
+        <h2 className="text-2xl md:text-3xl font-bold leading-tight serif-kor">
           아날로그의 온기로 <br /> 일상의 가치를 디자인합니다
         </h2>
       </Reveal>
@@ -84,18 +90,9 @@ const About = () => (
 );
 
 const BrandCore = () => (
-  <Section id="philosophy" className="my-12 !px-0 !w-[1920px] !max-w-none">
-    <div
-      className="relative py-[200px] overflow-hidden"
-      style={{
-        backgroundImage: `url(${mainBackground01})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
-    >
-      <div className="absolute inset-0 bg-white/15" />
-
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 px-6 md:px-[416px]">
+  <Section id="philosophy" className="my-12 !px-0 w-full !max-w-none">
+      <div className="relative py-20 md:py-[200px] overflow-hidden bg-[#fdfcef]">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 max-w-[1088px] mx-auto px-6">
         {[
           {
             title: "Philosophy",
@@ -132,6 +129,7 @@ const Portfolio = () => {
       id: 'product_featured',
       type: 'PRODUCT',
       image: mainMiddleProduct,
+      mobileImage: mainMiddleProductMobile,
       cols: 'col-span-12'
     },
     {
@@ -158,43 +156,59 @@ const Portfolio = () => {
     <Section id="portfolio" className="space-y-12">
       <Reveal>
         <div className="flex justify-between items-end border-b border-brand-ink/10 pb-8">
-          <h2 className="text-4xl serif">Value-Driven Portfolio</h2>
-          <Link to="/journals" className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2 group">
-            View Journals <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <h2 className="text-3xl serif">PORTFOLIO</h2>
         </div>
       </Reveal>
-      <div className="grid grid-cols-12 gap-12">
+      <div className="grid grid-cols-12 gap-6 md:gap-12">
         {categories.map((cat, idx) => (
           <Link 
             key={cat.id} 
-            to="/journals"
+            to={
+              cat.id === 'branding' ? "/branding" : 
+              cat.id === 'package' ? "/package" : 
+              cat.id === 'project' ? "/project" : 
+              "/product"
+            }
             className={cn("group cursor-pointer block", cat.cols)}
           >
-            <Reveal delay={idx * 0.1}>
-              <div className={cn("overflow-hidden relative aspect-square mb-6", cat.id === 'product_featured' && "!h-[500px] !w-[1089px] !aspect-auto mx-auto")}>
-               <img 
-                src={cat.image} 
-                alt={cat.type} 
-                className="w-full h-full object-contain"
-                referrerPolicy="no-referrer"
-              />
-
-              <div className="absolute inset-0 bg-brand-bg/10 group-hover:bg-transparent transition-colors duration-700" />
+            <Reveal delay={0.1 * idx}>
+              <div className={cn("overflow-hidden relative appearance-none mb-6", cat.id === 'product_featured' ? "w-full aspect-square md:!h-[500px] md:!w-[1089px] md:!aspect-auto mx-auto" : "aspect-square")}>
+                {cat.id === 'product_featured' && cat.mobileImage ? (
+                  <>
+                    <img 
+                      src={cat.mobileImage} 
+                      alt={`${cat.type} Mobile`} 
+                      className="md:hidden w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                    <img 
+                      src={cat.image} 
+                      alt={cat.type} 
+                      className="hidden md:block w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
+                  </>
+                ) : (
+                  <img 
+                    src={cat.image} 
+                    alt={cat.type} 
+                    className="w-full h-full object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
 
               {/* READ MORE */}
               <span 
                 className={cn(
                    "absolute z-10 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.15em] border-b pb-1 transition-all duration-300",
                   cat.id === "product_featured"
-                    ? "left-[490px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
-                    : "left-[220px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
+                    ? "right-4 md:right-auto md:left-[490px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
+                    : "right-4 md:right-auto md:left-[220px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
                 )}
               >
                 READ MORE
                 <span className="text-base leading-none">→</span>
               </span>
-              <div className="absolute inset-0 bg-brand-bg/10 group-hover:bg-transparent transition-colors duration-700" />
             </div>
             </Reveal>
           </Link>
@@ -205,27 +219,27 @@ const Portfolio = () => {
 };
 
 const BrandJournal = () => (
-  <Section id="journal" className="flex flex-col md:flex-row gap-12 relative">
-    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[300px] md:h-[600px] w-full overflow-hidden">
+  <Section id="journal" className="flex flex-col md:flex-row gap-8 md:gap-12 relative">
+    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[220px] md:h-[600px] w-full overflow-hidden">
   <Reveal>
-    <div className="h-[300px] md:h-[600px] w-full">
+    <div className="h-[220px] md:h-[600px] w-full">
       <img 
         src={mainBottomJournal01}
         alt="Brand Journal" 
-        className="w-full h-full object-cover object-center"
+        className="w-full h-full object-cover object-[center_85%]"
         referrerPolicy="no-referrer"
       />
     </div>
   </Reveal>
 </div>
-    <div className="md:w-1/2 space-y-16">
+    <div className="md:w-1/2 space-y-8 md:space-y-16">
       <div className="space-y-3">
         <Link to="/journals" className="group block">
-          <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90 group-hover:text-brand-accent transition-colors">Brand Journals</h2>
-          <p className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">캘리엠의 기록들 →</p>
+          <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90 group-hover:text-brand-accent transition-colors">JOURNALS</h2>
+          <p className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">VIEW ALL</p>
         </Link>
       </div>
-      <div className="space-y-12 divide-y divide-brand-ink/5">
+      <div className="space-y-8 md:space-y-12 divide-y divide-brand-ink/5">
         {[
           {
             date: "2026.04.23",
@@ -253,14 +267,14 @@ const BrandJournal = () => (
             <Link 
               to={item.link || '#'} 
               className={cn(
-                "pt-12 first:pt-0 group block",
+                "pt-8 md:pt-12 first:pt-0 group block",
                 item.link ? "cursor-pointer" : "cursor-default"
               )}
             >
               <span className="text-[10px] font-bold tracking-widest opacity-40 mb-3 block">{item.date}</span>
-              <h3 className="text-xl serif-kor mb-4duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
+              <h3 className="text-xl serif-kor mb-4 duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
               <p className="text-sm opacity-60 leading-relaxed font-light">{item.desc}</p>
-              <div className="mt-4 flex items-center gap-2 group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-60 -translate-x-4 group-hover:translate-x-0 transition-all ease-out">
+              <div className="mt-4 flex items-center gap-2 md:group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-60 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-60 md:group-hover:translate-x-0 transition-all ease-out">
                 READ MORE <span className="text-base leading-none">→</span>
               </div>
             </Link>
@@ -276,7 +290,7 @@ const Contact = () => (
     <div className="bg-brand-accent/5 rounded-[3rem] p-12 md:p-24 text-center space-y-12">
       <Reveal>
         <span className="italic-serif text-brand-accent text-lg">Connect with us</span>
-        <h2 className="text-[28px] serif mt-4">
+        <h2 className="text-[28px] serif-kor mt-4">
           당신의 소중한 가치에 <br /> 캘리엠의 온기를 더해보세요
         </h2>
       </Reveal>
