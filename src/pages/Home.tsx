@@ -223,25 +223,25 @@ const Portfolio = () => {
 const BrandJournal = () => (
   <Section id="journal" className="flex flex-col md:flex-row gap-8 md:gap-12 relative">
     <div className="md:w-1/2 md:sticky md:top-32 self-start h-[220px] md:h-[600px] w-full overflow-hidden">
-  <Reveal>
-    <div className="h-[220px] md:h-[600px] w-full">
-      <img 
-        src={mainBottomJournal01}
-        alt="Brand Journal" 
-        className="w-full h-full object-cover object-[center_85%]"
-        referrerPolicy="no-referrer"
-      />
+      <Reveal>
+        <div className="h-[220px] md:h-[600px] w-full">
+          <img 
+            src={mainBottomJournal01}
+            alt="Brand Journal" 
+            className="w-full h-full object-cover object-[center_85%]"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </Reveal>
     </div>
-  </Reveal>
-</div>
-    <div className="md:w-1/2 space-y-8 md:space-y-16">
+    <div className="md:w-1/2 space-y-4 md:space-y-16">
       <div className="space-y-3">
         <Link to="/journals" className="group block">
           <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90 group-hover:text-brand-accent transition-colors">JOURNALS</h2>
-          <p className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">VIEW ALL</p>
+          <p className="hidden md:block text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">VIEW ALL</p>
         </Link>
       </div>
-      <div className="space-y-8 md:space-y-12 divide-y divide-brand-ink/5">
+      <div className="space-y-6 md:space-y-12 divide-y divide-brand-ink/5">
         {[
           {
             date: "2026.04.23",
@@ -269,14 +269,20 @@ const BrandJournal = () => (
             <Link 
               to={item.link || '#'} 
               className={cn(
-                "pt-8 md:pt-12 first:pt-0 group block",
-                (idx === 1 || idx === 2) && "mb-[14px]",
+                "pt-6 md:pt-12 first:pt-0 group block",
                 item.link ? "cursor-pointer" : "cursor-default"
               )}
             >
-              <span className="text-[10px] font-bold tracking-widest opacity-40 mb-3 block">{item.date}</span>
-              <h3 className="text-base serif-kor mb-4 duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
-              <p className={cn("text-sm opacity-60 leading-relaxed font-light", idx !== 0 && "hidden md:block")}>{item.desc}</p>
+              <span className="text-[10px] font-bold tracking-widest opacity-40 mb-2 md:mb-3 block">{item.date}</span>
+              <h3 className={cn(
+                "serif-kor mb-3 md:mb-4 duration-300 group-hover:text-[#7A5C50]/70 transition-colors leading-snug",
+                idx === 0 ? "text-base md:text-xl" : "text-[15px] md:text-xl"
+              )}>
+                {item.title}
+              </h3>
+              <p className="hidden md:block text-sm opacity-60 leading-relaxed font-light">
+                {item.desc}
+              </p>
               <div className="mt-4 hidden md:flex items-center gap-2 md:group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-60 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-60 md:group-hover:translate-x-0 transition-all ease-out">
                 READ MORE <span className="text-base leading-none">→</span>
               </div>
