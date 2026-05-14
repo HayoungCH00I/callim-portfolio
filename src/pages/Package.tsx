@@ -123,12 +123,12 @@ const Package = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-8 px-6 md:px-12 lg:px-24 max-w-[2400px] mx-auto">
+      <section className="pt-[92px] md:pt-40 pb-4 md:pb-8 px-6 md:px-12 lg:px-24 max-w-[2400px] mx-auto">
         <Reveal>
-          <div className="space-y-4">
+          <div className="space-y-1.5 md:space-y-4">
             <span className="text-[11px] font-bold tracking-[0.3em] uppercase opacity-40">Portfolio</span>
-            <h1 className="text-[40px] md:text-[53px] font-serif tracking-tight leading-tight text-brand-ink/90">PACKAGE</h1>
-            <p className="text-[18px] opacity-60 serif-kor leading-relaxed max-w-2xl">
+            <h1 className="text-[30px] md:text-[53px] font-serif tracking-tight leading-tight text-brand-ink/90">PACKAGE</h1>
+            <p className="text-[14px] md:text-[18px] opacity-60 serif-kor leading-relaxed max-w-2xl">
               제품의 가치를 손끝으로 전하는 <br />
               감도 깊은 패키지 솔루션을 제안합니다.
             </p>
@@ -137,40 +137,40 @@ const Package = () => {
       </section>
 
       {/* Latest Featured Portfolio Section */}
-      <section className="py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
+      <section className="py-5 md:py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
         <Reveal>
-          <div className="grid grid-cols-1 xl:grid-cols-[1000px_1fr] gap-12 md:gap-20 items-center">
+          <div className="grid grid-cols-1 xl:grid-cols-[1000px_1fr] gap-4 md:gap-20 items-center">
             {/* Wide Hero Image */}
             <div 
-              className="relative overflow-hidden w-full lg:max-w-[1000px] h-[400px] md:h-[800px] bg-brand-ink/5 group cursor-pointer"
+              className="relative overflow-hidden w-full lg:max-w-[1000px] h-[220px] md:h-[800px] bg-brand-ink/5 group cursor-pointer"
               onClick={() => featuredProject.link && navigate(featuredProject.link)}
             >
               <img 
                 src={featuredProject.image} 
                 alt={featuredProject.title} 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute top-8 left-8 bg-brand-accent/90 text-white text-[10px] font-bold tracking-[0.2em] px-4 py-1.5 uppercase">
+              <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-brand-accent/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-3 md:px-4 py-1.5 uppercase">
                 NEWEST CASE
               </div>
             </div>
             
             {/* Project Details */}
             <div 
-              className="space-y-8 py-8 pr-12 cursor-pointer group/text"
+              className="space-y-4 md:space-y-8 py-2 md:py-8 pr-0 md:pr-12 cursor-pointer group/text"
               onClick={() => featuredProject.link && navigate(featuredProject.link)}
             >
-              <div className="space-y-4">
+              <div className="space-y-2 md:space-y-4">
                 <span className="text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">{featuredProject.year} Package Case</span>
-                <h2 className="text-[40px] md:text-[53px] lg:text-[66px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
-                <p className="text-[20px] serif-kor opacity-60 leading-relaxed w-[455px] max-w-full">
+                <h2 className="text-[26px] md:text-[53px] lg:text-[66px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
+                <p className="text-[14px] md:text-[20px] serif-kor opacity-60 leading-relaxed md:leading-relaxed w-full md:w-[455px] max-w-full">
                   {featuredProject.desc}
                 </p>
               </div>
-              <div className="pt-2">
+              <div className="pt-0 md:pt-2">
                 <button 
-                  className="inline-flex items-center gap-3 text-[11px] font-bold tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 hover:border-brand-accent hover:text-brand-accent transition-all group"
+                  className="inline-flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 hover:border-brand-accent hover:text-brand-accent transition-all group"
                   onClick={(e) => {
                     e.stopPropagation();
                     if (featuredProject.link) navigate(featuredProject.link);
@@ -189,9 +189,9 @@ const Package = () => {
       </section>
 
       {/* Filter Button Bar */}
-      <div className="bg-brand-bg border-b border-brand-ink/5 mb-8">
+      <div className="bg-brand-bg border-b border-brand-ink/5 mb-4 md:mb-8">
         <div className="max-w-[2800px] mx-auto px-6 md:px-12 lg:px-24">
-          <div className="flex justify-end items-center py-6">
+          <div className="flex justify-end items-center py-3 md:py-6">
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className={cn(
@@ -280,8 +280,8 @@ const Package = () => {
       </div>
 
       {/* Square Project Grid */}
-      <Section className="pb-32 pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 text-center max-w-[2400px] mx-auto">
+      <Section className="pb-20 md:pb-32 pt-5 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-24 text-center max-w-[2400px] mx-auto">
           {filteredProjects.map((project, idx) => {
             const thumbnailYOffsets = [
               "lg:translate-y-0",
@@ -302,16 +302,15 @@ const Package = () => {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     referrerPolicy="no-referrer"
-                    style={{ height: '460px', width: '656.656px' }}
                   />
                   <div className="absolute bottom-4 left-4 bg-brand-ink/90 text-white text-[10px] font-bold tracking-[0.2em] px-2 py-0.5">
                     {project.year}
                   </div>
                 </div>
                 <div className="space-y-2 max-w-[400px] mx-auto">
-                  <h3 className="text-[26px] font-sans font-medium leading-snug tracking-normal whitespace-pre-line">{project.title}</h3>
+                  <h3 className="text-[19px] md:text-[26px] font-sans font-medium leading-snug tracking-normal whitespace-pre-line">{project.title}</h3>
                 </div>
               </div>
             </Reveal>

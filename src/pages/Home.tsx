@@ -16,7 +16,8 @@ import mainMiddleProject from "../images/main/project.jpg";
 // import branding02 from "../images/main/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
 // import package02 from "../images/main/package_02.jpg"; // 포트폴리오 추가 이미지 예정
 
-import mainBottomJournal01 from "../images/main/journal01.jpg";
+import mainBottomJournal01 from "../images/main/journal.jpg";
+import mainBottomJournalMobile from "../images/main/journal_mobile.webp";
 // import journal02 from "../images/main/journal02.jpg"; // 저널 추가 이미지 예정
 // import journal03 from "../images/main/journal03.jpg"; // 저널 추가 이미지 예정
 
@@ -81,7 +82,7 @@ const About = () => (
             단순히 아름다운 결과물을 넘어 사용자의 마음과 맞닿는 경험을 창조합니다.
           </p>
           <div className="pt-4">
-            <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 hover:gap-4 transition-all">
+            <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 md:hover:gap-4 transition-none md:transition-all">
               About us <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -222,20 +223,34 @@ const Portfolio = () => {
 
 const BrandJournal = () => (
   <Section id="journal" className="flex flex-col md:flex-row gap-8 md:gap-12 relative">
+    {/* Mobile Only Title */}
+    <div className="md:hidden">
+      <Link to="/journals" className="flex justify-between items-baseline">
+        <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90">JOURNALS</h2>
+        <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase">VIEW ALL</span>
+      </Link>
+    </div>
+
     <div className="md:w-1/2 md:sticky md:top-32 self-start h-[220px] md:h-[600px] w-full overflow-hidden">
       <Reveal>
         <div className="h-[220px] md:h-[600px] w-full">
           <img 
+            src={mainBottomJournalMobile}
+            alt="Brand Journal Mobile" 
+            className="md:hidden w-full h-full object-cover object-[center_85%]"
+            referrerPolicy="no-referrer"
+          />
+          <img 
             src={mainBottomJournal01}
             alt="Brand Journal" 
-            className="w-full h-full object-cover object-[center_85%]"
+            className="hidden md:block w-full h-full object-cover object-[center_85%]"
             referrerPolicy="no-referrer"
           />
         </div>
       </Reveal>
     </div>
     <div className="md:w-1/2 space-y-4 md:space-y-16">
-      <div className="space-y-3">
+      <div className="hidden md:block space-y-3">
         <Link to="/journals" className="group block">
           <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90 group-hover:text-brand-accent transition-colors">JOURNALS</h2>
           <p className="hidden md:block text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">VIEW ALL</p>
@@ -299,7 +314,7 @@ const Contact = () => (
     <div className="bg-brand-accent/5 rounded-[3rem] p-12 md:p-24 text-center space-y-12">
       <Reveal>
         <span className="italic-serif text-brand-accent text-lg">Connect with us</span>
-        <h2 className="text-[28px] serif-kor mt-4">
+        <h2 className="text-[17px] md:text-[28px] serif-kor mt-4">
           당신의 소중한 가치에 <br /> 캘리엠의 온기를 더해보세요
         </h2>
       </Reveal>
