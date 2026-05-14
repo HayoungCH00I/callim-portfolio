@@ -6,7 +6,7 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Section, Reveal } from '../components/Common';
 
-import heroImage from "../images/main/hero.jpg";
+import heroImage from "../images/main/hero.webp";
 import heroMobileImage from "../images/main/hero_mobile.webp";
 import mainMiddleProduct from "../images/main/product.jpg";
 import mainMiddleProductMobile from "../images/main/product_mobile.webp";
@@ -34,7 +34,7 @@ const Hero = () => (
         alt="Hero Background"
         className="hidden md:block w-full h-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
     </div>
     <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
       <Reveal>
@@ -43,17 +43,19 @@ const Hero = () => (
         </h1>
       </Reveal>
       <Reveal delay={0.2}>
-        <h2 className="text-[20px] md:text-[22px] font-bold mb-10 serif-kor tracking-widest text-white/90 drop-shadow-md">
-          아날로그의 온기로 일상의 가치를 디자인합니다
+        <h2 className="text-[16px] md:text-[22px] font-bold mb-10 serif-kor tracking-widest text-white/90 drop-shadow-md">
+          아날로그의 온기로 <br className="md:hidden" />일상의 가치를 디자인합니다
         </h2>
       </Reveal>
-      <Reveal delay={0.4}>
-        <div className="w-16 h-px bg-white/40 mx-auto mb-8" />
-        <p className="text-[11px] md:text-[13px] text-white/70 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-sm">
-          소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
-          캘리엠이 전하는 따스한 시각 언어
-        </p>
-      </Reveal>
+      <div className="hidden md:block">
+        <Reveal delay={0.4}>
+          <div className="w-16 h-px bg-white/40 mx-auto mb-8" />
+          <p className="text-[11px] md:text-[13px] text-white/70 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-sm">
+            소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
+            캘리엠이 전하는 따스한 시각 언어
+          </p>
+        </Reveal>
+      </div>
     </div>
   </section>
 );
@@ -80,7 +82,7 @@ const About = () => (
           </p>
           <div className="pt-4">
             <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 hover:gap-4 transition-all">
-              Learn More <ArrowRight className="w-4 h-4" />
+              About us <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -91,7 +93,7 @@ const About = () => (
 
 const BrandCore = () => (
   <Section id="philosophy" className="my-12 !px-0 w-full !max-w-none">
-      <div className="relative py-20 md:py-[200px] overflow-hidden bg-[#fdfcef]">
+      <div className="relative py-20 md:py-[200px] overflow-hidden bg-[#a2ac93]">
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 max-w-[1088px] mx-auto px-6">
         {[
           {
@@ -112,9 +114,9 @@ const BrandCore = () => (
         ].map((item, idx) => (
           <Reveal key={item.title} delay={idx * 0.1}>
               <div className="space-y-6 text-center">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#000000] font-bold">{item.title}</span>
-              <h3 className="text-2xl md:text-3xl serif-kor text-[#000000]">{item.subtitle}</h3>
-              <p className="text-sm leading-relaxed text-[#000000] font-light max-w-xs mx-auto">{item.content}</p>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">{item.title}</span>
+              <h3 className="text-2xl md:text-3xl serif-kor text-white">{item.subtitle}</h3>
+              <p className="text-sm leading-relaxed text-white/80 font-light max-w-xs mx-auto">{item.content}</p>
             </div>
           </Reveal>
         ))}
@@ -200,7 +202,7 @@ const Portfolio = () => {
               {/* READ MORE */}
               <span 
                 className={cn(
-                   "absolute z-10 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.15em] border-b pb-1 transition-all duration-300",
+                   "absolute z-10 hidden md:inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.15em] border-b pb-1 transition-all duration-300",
                   cat.id === "product_featured"
                     ? "right-4 md:right-auto md:left-[490px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
                     : "right-4 md:right-auto md:left-[220px] bottom-[16px] text-brand-ink/80 border-brand-ink/20 hover:gap-5"
@@ -268,13 +270,14 @@ const BrandJournal = () => (
               to={item.link || '#'} 
               className={cn(
                 "pt-8 md:pt-12 first:pt-0 group block",
+                (idx === 1 || idx === 2) && "mb-[14px]",
                 item.link ? "cursor-pointer" : "cursor-default"
               )}
             >
               <span className="text-[10px] font-bold tracking-widest opacity-40 mb-3 block">{item.date}</span>
-              <h3 className="text-xl serif-kor mb-4 duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
-              <p className="text-sm opacity-60 leading-relaxed font-light">{item.desc}</p>
-              <div className="mt-4 flex items-center gap-2 md:group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-60 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-60 md:group-hover:translate-x-0 transition-all ease-out">
+              <h3 className="text-base serif-kor mb-4 duration-300 group-hover:text-[#7A5C50]/70 transition-colors">{item.title}</h3>
+              <p className={cn("text-sm opacity-60 leading-relaxed font-light", idx !== 0 && "hidden md:block")}>{item.desc}</p>
+              <div className="mt-4 hidden md:flex items-center gap-2 md:group-hover:gap-5 text-[10px] font-bold uppercase tracking-widest opacity-60 translate-x-0 md:opacity-0 md:-translate-x-4 md:group-hover:opacity-60 md:group-hover:translate-x-0 transition-all ease-out">
                 READ MORE <span className="text-base leading-none">→</span>
               </div>
             </Link>
