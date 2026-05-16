@@ -3,16 +3,26 @@ import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { Reveal, Section } from '../../components/Common';
 
+import mainHeroImg from '../../images/package/honest-k-food/featured-honest-k-food.png';
+import brandStoryImgLocal from '../../images/package/honest-k-food/overview.webp';
+import detailImg1Local from '../../images/package/honest-k-food/detail-01.webp';
+import detailImg2Local from '../../images/package/honest-k-food/detail-02.webp';
+import labelSystemImgLocal from '../../images/package/honest-k-food/label.webp';
+import packageDesignImgLocal from '../../images/package/honest-k-food/outcome.jpg';
+
 // Images
-import mainHero from '../../images/package/honest-k-food/featured-honest-k-food.png';
-import brandStoryImg from '../../images/package/honest-k-food/overview.webp';
-import detailImg1 from '../../images/package/honest-k-food/detail-01.webp';
-import labelDetail02 from '../../images/package/honest-k-food/detail-02.webp';
-import designConceptImg from '../../images/package/honest-k-food/detail-01.webp';
+const mainHero = mainHeroImg;
+const brandStoryImg = brandStoryImgLocal;
+const detailImg1 = detailImg1Local;
+const labelDetail02 = detailImg2Local;
+const designConceptImg = detailImg1Local;
+const labelSystemImg = labelSystemImgLocal;
+
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1594914141221-72782069ed89?auto=format&fit=crop&q=80&w=1600';
 // Using placeholders for the rest of the visual story - updated names for future replacement
-const labelSystemImg1 = detailImg1;
+const labelSystemImg1 = labelSystemImg;
 const labelSystemImg2 = labelDetail02;
-const packageDesignImg = "https://images.unsplash.com/photo-1544203714-35805566f10c?auto=format&fit=crop&q=80&w=1600";
+const packageDesignImg = packageDesignImgLocal;
 
 const HonestKFood = () => {
   useEffect(() => {
@@ -30,6 +40,9 @@ const HonestKFood = () => {
             src={mainHero} 
             alt="HONEST K FOOD Hero" 
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = FALLBACK_IMAGE;
+            }}
           />
           <div className="absolute inset-0 bg-black/10 z-20" />
         </div>

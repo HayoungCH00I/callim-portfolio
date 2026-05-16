@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -62,7 +62,7 @@ const Hero = () => (
 );
 
 const About = () => (
-  <Section id="about" className="flex flex-col md:flex-row gap-16 lg:gap-24 items-start py-20 md:!pt-[150px] md:!pb-[150px]">
+  <Section id="about" className="flex flex-col md:flex-row gap-16 lg:gap-24 items-start pt-20 pb-2 md:!pt-[150px] md:!pb-[150px]">
     <div className="md:w-1/2">
       <Reveal>
         <h2 className="text-2xl md:text-3xl font-bold leading-tight serif-kor">
@@ -81,10 +81,10 @@ const About = () => (
             캘리엠은 이러한 아날로그적 정서를 현대적 디자인 솔루션으로 해석하여, 
             단순히 아름다운 결과물을 넘어 사용자의 마음과 맞닿는 경험을 창조합니다.
           </p>
-          <div className="pt-4">
-            <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 md:hover:gap-4 transition-none md:transition-all">
+          <div className="pt-4 hidden md:block">
+            <Link to="/about" className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink pb-1 hover:gap-4 transition-all">
               About us <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       </Reveal>
@@ -93,9 +93,9 @@ const About = () => (
 );
 
 const BrandCore = () => (
-  <Section id="philosophy" className="my-12 !px-0 w-full !max-w-none">
-      <div className="relative py-20 md:py-[200px] overflow-hidden bg-[#a2ac93]">
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16 max-w-[1088px] mx-auto px-6">
+  <Section id="philosophy" className="mt-0 mb-0 pb-10 md:pb-0 md:my-12 !px-0 w-full !max-w-none">
+      <div className="relative pt-14 pb-6 md:py-[200px] overflow-hidden bg-[#a2ac93]">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-16 max-w-[1088px] md:max-w-[1640px] mx-auto px-6 md:px-20">
         {[
           {
             title: "Philosophy",
@@ -113,15 +113,34 @@ const BrandCore = () => (
             content: "가치의 발견(Discover), 감성의 디자인(Design), 사회적 연결(Connect)을 통해 사람과 지역사회를 잇는 공감의 채널을 형성합니다."
           }
         ].map((item, idx) => (
-          <Reveal key={item.title} delay={idx * 0.1}>
-              <div className="space-y-6 text-center">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">{item.title}</span>
-              <h3 className="text-2xl md:text-3xl serif-kor text-white">{item.subtitle}</h3>
-              <p className="text-sm leading-relaxed text-white/80 font-light max-w-xs mx-auto">{item.content}</p>
+          <Fragment key={item.title}>
+            <div className="relative">
+              <Reveal delay={idx * 0.1}>
+                  <div className="space-y-6 text-center">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">{item.title}</span>
+                  <h3 className="text-2xl md:text-3xl serif-kor text-white">{item.subtitle}</h3>
+                  <p className="text-sm leading-relaxed text-white/80 font-light max-w-xs mx-auto">{item.content}</p>
+                </div>
+              </Reveal>
+              {idx < 2 && (
+                <div className="hidden md:block absolute -right-10 top-1/2 -translate-y-1/2 w-[1px] h-[150px] bg-white/20" />
+              )}
             </div>
-          </Reveal>
+            {idx < 2 && (
+              <div className="py-5 md:hidden">
+                <div className="w-16 h-px bg-white/30 mx-auto" />
+              </div>
+            )}
+          </Fragment>
         ))}
       </div>
+      <Reveal delay={0.4}>
+        <div className="mt-16 md:hidden relative z-10 flex justify-end px-6">
+          <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-white/70 pb-1 text-white/90">
+            ABOUT US <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </Reveal>
     </div>
   </Section>
 );
@@ -156,13 +175,13 @@ const Portfolio = () => {
   ];
 
   return (
-    <Section id="portfolio" className="space-y-12">
+    <Section id="portfolio" className="space-y-6 md:space-y-12 !pt-0 md:!pt-24">
       <Reveal>
-        <div className="flex justify-between items-end border-b border-brand-ink/10 pb-8">
-          <h2 className="text-3xl serif">PORTFOLIO</h2>
+        <div className="flex justify-between items-end border-b border-brand-ink/10 pb-3 md:pb-8">
+          <h2 className="text-[22px] md:text-3xl serif">PORTFOLIO</h2>
         </div>
       </Reveal>
-      <div className="grid grid-cols-12 gap-6 md:gap-12">
+      <div className="grid grid-cols-12 gap-2 md:gap-12 -mt-1 md:mt-0">
         {categories.map((cat, idx) => (
           <Link 
             key={cat.id} 
@@ -226,7 +245,7 @@ const BrandJournal = () => (
     {/* Mobile Only Title */}
     <div className="md:hidden">
       <Link to="/journals" className="flex justify-between items-baseline">
-        <h2 className="text-3xl serif tracking-tight uppercase text-brand-ink/90">JOURNALS</h2>
+        <h2 className="text-[22px] md:text-3xl serif tracking-tight uppercase text-brand-ink/90">JOURNALS</h2>
         <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase">VIEW ALL</span>
       </Link>
     </div>

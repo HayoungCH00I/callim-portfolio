@@ -79,6 +79,8 @@ const Branding = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   
+  const [isMobile, setIsMobile] = useState(false);
+  
   // Filter States
   const [yearRange, setYearRange] = useState({ min: 2020, max: 2024 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
@@ -91,8 +93,15 @@ const Branding = () => {
       setIsFilterOpen(false);
     };
 
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkMobile);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -100,7 +109,8 @@ const Branding = () => {
   };
 
   const filteredProjects = useMemo(() => {
-    let result = [...brandingProjects];
+    // Exclude featured projects from the main list
+    let result = brandingProjects.filter(p => !p.isFeatured);
 
     // Apply Year Filter
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
@@ -120,12 +130,12 @@ const Branding = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-8 px-6 md:px-12 lg:px-24 max-w-[2400px] mx-auto">
+      <section className="pt-[92px] md:pt-40 pb-4 md:pb-8 px-6 md:px-12 lg:px-24 max-w-[2400px] mx-auto">
         <Reveal>
-          <div className="space-y-4">
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">Portfolio</span>
-            <h1 className="text-4xl md:text-5xl font-serif tracking-tight leading-tight text-brand-ink/90">BRANDING</h1>
-            <p className="text-base opacity-60 serif-kor leading-relaxed max-w-2xl">
+          <div className="space-y-1.5 md:space-y-4">
+            <span className="text-[11px] font-bold tracking-[0.3em] uppercase opacity-40">Portfolio</span>
+            <h1 className="text-[30px] md:text-[53px] font-serif tracking-tight leading-tight text-brand-ink/90">BRANDING</h1>
+            <p className="text-[14px] md:text-[18px] opacity-60 serif-kor leading-relaxed max-w-2xl">
               브랜드의 본질을 담는 캘리그라피와 <br />
               감도 깊은 비주얼 아이덴티티를 제안합니다.
             </p>
@@ -134,36 +144,42 @@ const Branding = () => {
       </section>
 
       {/* Latest Featured Portfolio Section */}
-      <section className="py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
+      <section className="py-5 md:py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
         <Reveal>
-          <div className="grid grid-cols-1 xl:grid-cols-[1000px_1fr] gap-12 md:gap-20 items-center">
-            {/* Wide Hero Image - Adjusted to user's targeted size (1000px x 800px) */}
-            <div className="relative overflow-hidden w-full lg:max-w-[1000px] h-[400px] md:h-[800px] bg-brand-ink/5 group">
+          <div className="grid grid-cols-1 xl:grid-cols-[820px_minmax(520px,620px)] gap-4 md:gap-16 xl:gap-20 items-center max-w-[1520px] mx-auto">
+            {/* Wide Hero Image */}
+            <div 
+              className="relative overflow-hidden w-full h-[220px] md:h-[600px] bg-brand-ink/5 group cursor-pointer"
+            >
               <img 
                 src={featuredProject.image} 
                 alt={featuredProject.title} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute top-8 left-8 bg-brand-accent/90 text-white text-[9px] font-bold tracking-[0.2em] px-4 py-1.5 uppercase">
+              <div className="hidden md:block absolute top-4 left-4 md:top-8 md:left-8 bg-brand-accent/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-3 md:px-4 py-1.5 uppercase">
                 NEWEST CASE
               </div>
             </div>
             
             {/* Project Details */}
-            <div className="space-y-8 py-8 pr-12">
-              <div className="space-y-4">
-                <span className="text-[10px] font-bold tracking-[0.2em] opacity-40 uppercase">{featuredProject.year} Branding Case</span>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl serif-kor leading-tight">{featuredProject.title}</h2>
-                <p className="text-lg serif-kor opacity-60 leading-relaxed w-[455px] max-w-full">
+            <div 
+              className="space-y-4 md:space-y-7 py-2 md:py-8 pr-0 max-w-[620px] cursor-pointer group/text"
+            >
+              <div className="space-y-2 md:space-y-4">
+                <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">Newest Case · {featuredProject.year}</span>
+                <h2 className="text-[24px] md:text-[44px] lg:text-[56px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
+                <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-[620px]">
                   {featuredProject.desc}
                 </p>
               </div>
-              <div className="pt-2">
-                <button className="inline-flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 hover:border-brand-accent hover:text-brand-accent transition-all group">
+              <div className="pt-0 md:pt-2">
+                <button 
+                  className="inline-flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 hover:border-brand-accent hover:text-brand-accent transition-all group"
+                >
                   View Case Study
                   <motion.span 
-                    animate={{ x: [0, 5, 0] }}
+                    animate={isMobile ? { x: 0 } : { x: [0, 5, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
                   >→</motion.span>
                 </button>
@@ -173,24 +189,25 @@ const Branding = () => {
         </Reveal>
       </section>
 
-      {/* Filter Button Bar (No Categories) */}
-      <div className="bg-brand-bg border-b border-brand-ink/5 mb-8">
+      {/* Filter Button Bar */}
+      <div className="bg-brand-bg border-b border-brand-ink/5 mb-2 md:mb-8">
         <div className="max-w-[2800px] mx-auto px-6 md:px-12 lg:px-24">
-          <div className="flex justify-end items-center py-6">
+          <div className="flex justify-end items-center py-3 md:py-6">
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className={cn(
-                "flex items-center gap-2 text-[11px] font-bold tracking-[0.1em] transition-all hover:opacity-100",
-                isFilterOpen ? "text-brand-accent scale-105" : "text-brand-ink/40"
+                "inline-flex items-center  justify-center rounded-full border w-9 h-9 md:w-auto md:h-auto md:px-4 md:py-2 text-[10px] md:text-[11px] font-bold tracking-[0.16em] md:tracking-[0.1em] transition-all hover:opacity-100",
+                isFilterOpen
+                  ? "border-brand-accent/50 text-brand-accent"
+                  : "border-brand-ink/15 text-brand-ink/45 hover:border-brand-ink/30 hover:text-brand-ink/70"
               )}
             >
               {isFilterOpen ? <X className="w-3.5 h-3.5" /> : <SlidersHorizontal className="w-3.5 h-3.5" />}
-              FILTER
+              <span className="sr-only md:not-sr-only">Filter</span>
             </button>
           </div>
         </div>
 
-        {/* Expandable Filter Panel */}
         <AnimatePresence>
           {isFilterOpen && (
             <motion.div
@@ -266,34 +283,41 @@ const Branding = () => {
       </div>
 
       {/* Square Project Grid */}
-      <Section className="pb-32 pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24 text-center max-w-[2400px] mx-auto">
-          {filteredProjects.map((project, idx) => (
-            <Reveal key={project.id} delay={(idx % 3) * 0.1}>
+      <Section className="pb-20 md:pb-32 pt-3 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-7 md:gap-y-24 text-left md:text-center max-w-[2400px] mx-auto">
+          {filteredProjects.map((project, idx) => {
+            const thumbnailYOffsets = [
+              "lg:translate-y-0",
+              "lg:translate-y-12",
+              "lg:translate-y-24",
+            ];
+
+           return (
+             <Reveal key={project.id} delay={(idx % 3) * 0.1}>
               <div 
                 className={cn(
                   "group cursor-pointer transition-transform duration-500",
-                  idx % 3 === 1 && "lg:translate-y-20"
+                  thumbnailYOffsets[idx % 3]
                 )}
               >
-                <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-[20px] relative">
+                <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-3 md:mb-[20px] relative">
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     referrerPolicy="no-referrer"
-                    style={{ height: '460px', width: '656.656px' }}
                   />
-                  <div className="absolute bottom-4 left-4 bg-brand-ink/90 text-white text-[9px] font-bold tracking-[0.2em] px-2 py-0.5">
+                  <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-brand-ink/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-2 py-0.5">
                     {project.year}
                   </div>
                 </div>
-                <div className="space-y-2 max-w-[400px] mx-auto">
-                  <h3 className="text-2xl font-sans font-medium leading-snug tracking-normal">{project.title}</h3>
+                <div className="space-y-2 max-w-[400px] mr-auto md:mx-auto">
+                  <h3 className="text-[17px] md:text-[26px] font-sans font-medium leading-snug tracking-normal whitespace-pre-line">{project.title}</h3>
                 </div>
               </div>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </Section>
 

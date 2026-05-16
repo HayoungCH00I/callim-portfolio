@@ -11,7 +11,7 @@ export const Navigation = ({ transparent = false }: { transparent?: boolean }) =
   const isHome = location.pathname === '/';
 
   const menuItems = [
-    { name: 'About', href: isHome ? "#about" : "/#about" },
+    { name: 'About', href: "/about", isLink: true },
     { name: 'Portfolio', href: isHome ? "#portfolio" : "/#portfolio" },
     { name: 'JOURNALS', href: "/journals", isLink: true },
     { name: 'Contact', href: isHome ? "#contact" : "/#contact" },

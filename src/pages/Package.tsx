@@ -7,7 +7,10 @@ import { ArrowUp, SlidersHorizontal, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 
-import featuredImage from '../images/package/honest-k-food/featured-honest-k-food.png';
+import featuredImg from '../images/package/honest-k-food/featured-honest-k-food.png';
+
+const featuredImage = featuredImg;
+const FEATURED_FALLBACK = 'https://images.unsplash.com/photo-1594914141221-72782069ed89?auto=format&fit=crop&q=80&w=1600';
 
 const packageProjects = [
   {
@@ -82,6 +85,8 @@ const Package = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   
+  const [isMobile, setIsMobile] = useState(false);
+  
   // Filter States
   const [yearRange, setYearRange] = useState({ min: 2020, max: 2024 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
@@ -94,8 +99,15 @@ const Package = () => {
       setIsFilterOpen(false);
     };
 
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkMobile);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -103,7 +115,8 @@ const Package = () => {
   };
 
   const filteredProjects = useMemo(() => {
-    let result = [...packageProjects];
+    // Exclude featured projects from the main list
+    let result = packageProjects.filter(p => !p.isFeatured);
 
     // Apply Year Filter
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
@@ -139,10 +152,10 @@ const Package = () => {
       {/* Latest Featured Portfolio Section */}
       <section className="py-5 md:py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
         <Reveal>
-          <div className="grid grid-cols-1 xl:grid-cols-[1000px_1fr] gap-4 md:gap-20 items-center">
+          <div className="grid grid-cols-1 xl:grid-cols-[820px_minmax(520px,620px)] gap-4 md:gap-16 xl:gap-20 items-center max-w-[1520px] mx-auto">
             {/* Wide Hero Image */}
             <div 
-              className="relative overflow-hidden w-full lg:max-w-[1000px] h-[220px] md:h-[800px] bg-brand-ink/5 group cursor-pointer"
+              className="relative overflow-hidden w-full h-[220px] md:h-[600px] bg-brand-ink/5 group cursor-pointer"
               onClick={() => featuredProject.link && navigate(featuredProject.link)}
             >
               <img 
@@ -150,21 +163,24 @@ const Package = () => {
                 alt={featuredProject.title} 
                 className="w-full h-full object-cover object-center"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = FEATURED_FALLBACK;
+                }}
               />
-              <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-brand-accent/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-3 md:px-4 py-1.5 uppercase">
+              <div className="hidden md:block absolute top-4 left-4 md:top-8 md:left-8 bg-brand-accent/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-3 md:px-4 py-1.5 uppercase">
                 NEWEST CASE
               </div>
             </div>
             
             {/* Project Details */}
             <div 
-              className="space-y-4 md:space-y-8 py-2 md:py-8 pr-0 md:pr-12 cursor-pointer group/text"
+              className="space-y-4 md:space-y-7 py-2 md:py-8 pr-0 max-w-[620px] cursor-pointer group/text"
               onClick={() => featuredProject.link && navigate(featuredProject.link)}
             >
               <div className="space-y-2 md:space-y-4">
-                <span className="text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">{featuredProject.year} Package Case</span>
-                <h2 className="text-[26px] md:text-[53px] lg:text-[66px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
-                <p className="text-[14px] md:text-[20px] serif-kor opacity-60 leading-relaxed md:leading-relaxed w-full md:w-[455px] max-w-full">
+                <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">Newest Case · {featuredProject.year}</span>
+                <h2 className="text-[24px] md:text-[44px] lg:text-[56px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
+                <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-[620px]">
                   {featuredProject.desc}
                 </p>
               </div>
@@ -178,7 +194,7 @@ const Package = () => {
                 >
                   View Case Study
                   <motion.span 
-                    animate={{ x: [0, 5, 0] }}
+                    animate={isMobile ? { x: 0 } : { x: [0, 5, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
                   >→</motion.span>
                 </button>
@@ -189,18 +205,20 @@ const Package = () => {
       </section>
 
       {/* Filter Button Bar */}
-      <div className="bg-brand-bg border-b border-brand-ink/5 mb-4 md:mb-8">
+      <div className="bg-brand-bg border-b border-brand-ink/5 mb-2 md:mb-8">
         <div className="max-w-[2800px] mx-auto px-6 md:px-12 lg:px-24">
           <div className="flex justify-end items-center py-3 md:py-6">
             <button 
               onClick={() => setIsFilterOpen(!isFilterOpen)}
               className={cn(
-                "flex items-center gap-2 text-[11px] font-bold tracking-[0.1em] transition-all hover:opacity-100",
-                isFilterOpen ? "text-brand-accent scale-105" : "text-brand-ink/40"
+                "inline-flex items-center  justify-center rounded-full border w-9 h-9 md:w-auto md:h-auto md:px-4 md:py-2 text-[10px] md:text-[11px] font-bold tracking-[0.16em] md:tracking-[0.1em] transition-all hover:opacity-100",
+                isFilterOpen
+                  ? "border-brand-accent/50 text-brand-accent"
+                  : "border-brand-ink/15 text-brand-ink/45 hover:border-brand-ink/30 hover:text-brand-ink/70"
               )}
             >
               {isFilterOpen ? <X className="w-3.5 h-3.5" /> : <SlidersHorizontal className="w-3.5 h-3.5" />}
-              FILTER
+              <span className="sr-only md:not-sr-only">Filter</span>
             </button>
           </div>
         </div>
@@ -280,8 +298,8 @@ const Package = () => {
       </div>
 
       {/* Square Project Grid */}
-      <Section className="pb-20 md:pb-32 pt-5 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-24 text-center max-w-[2400px] mx-auto">
+      <Section className="pb-20 md:pb-32 pt-3 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-7 md:gap-y-24 text-left md:text-center max-w-[2400px] mx-auto">
           {filteredProjects.map((project, idx) => {
             const thumbnailYOffsets = [
               "lg:translate-y-0",
@@ -298,19 +316,24 @@ const Package = () => {
                 )}
                 onClick={() => project.link && navigate(project.link)}
               >
-                <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-[20px] relative">
+                <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-3 md:mb-[20px] relative">
                   <img 
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover object-center"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (project.image === featuredImage) {
+                        e.currentTarget.src = FEATURED_FALLBACK;
+                      }
+                    }}
                   />
-                  <div className="absolute bottom-4 left-4 bg-brand-ink/90 text-white text-[10px] font-bold tracking-[0.2em] px-2 py-0.5">
+                  <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-brand-ink/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-2 py-0.5">
                     {project.year}
                   </div>
                 </div>
-                <div className="space-y-2 max-w-[400px] mx-auto">
-                  <h3 className="text-[19px] md:text-[26px] font-sans font-medium leading-snug tracking-normal whitespace-pre-line">{project.title}</h3>
+                <div className="space-y-2 max-w-[400px] mr-auto md:mx-auto">
+                  <h3 className="text-[17px] md:text-[26px] font-sans font-medium leading-snug tracking-normal whitespace-pre-line">{project.title}</h3>
                 </div>
               </div>
             </Reveal>
