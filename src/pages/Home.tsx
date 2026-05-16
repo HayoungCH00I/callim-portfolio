@@ -65,9 +65,11 @@ const About = () => (
   <Section id="about" className="flex flex-col md:flex-row gap-16 lg:gap-24 items-start pt-20 pb-2 md:!pt-[150px] md:!pb-[150px]">
     <div className="md:w-1/2">
       <Reveal>
-        <h2 className="text-2xl md:text-3xl font-bold leading-tight serif-kor">
-          아날로그의 온기로 <br /> 일상의 가치를 디자인합니다
-        </h2>
+        <Link to="/project/brand-renewal" className="block group">
+          <h2 className="text-2xl md:text-3xl font-bold leading-tight serif-kor group-hover:text-brand-accent transition-colors">
+            아날로그의 온기로 <br /> 일상의 가치를 디자인합니다
+          </h2>
+        </Link>
       </Reveal>
     </div>
     <div className="md:w-1/2">

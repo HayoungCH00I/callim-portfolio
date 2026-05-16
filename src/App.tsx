@@ -12,7 +12,7 @@ import Branding from './pages/Branding';
 import Package from './pages/Package';
 import Project from './pages/Project';
 import About from './pages/About';
-import BrandRenewal from './pages/project/BrandRenewal';
+import BrandRenewal from './pages/branding/BrandRenewal';
 import HonestKFood from './pages/package/HonestKFood';
 import LiteracyArtExhibition from './pages/project/LiteracyArtExhibition';
 

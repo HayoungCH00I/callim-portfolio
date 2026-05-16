@@ -6,16 +6,26 @@ import { cn } from '../lib/utils';
 import { ArrowUp, SlidersHorizontal, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 
-import featuredImage from '../images/main/branding.jpg';
+import featuredImage from '../images/branding/limewood/featured.webp';
+
+import { useNavigate } from 'react-router-dom';
 
 const brandingProjects = [
+  {
+    id: 0,
+    title: '친환경 원목 어린이 가구 브랜드 리뉴얼',
+    desc: '브랜드의 철학과 감성을 다시 정의하며 시각적 일관성과 브랜드 방향성을 구축한 전략 브랜딩 프로젝트입니다.',
+    image: featuredImage,
+    year: 2026,
+    isFeatured: true,
+    slug: '/project/brand-renewal'
+  },
   {
     id: 1,
     title: '미분당 브랜드 아이덴티티',
     desc: '쌀국수 전문점의 고유한 감성을 담은 붓터치 로고와 브랜딩 시스템',
-    image: featuredImage,
+    image: 'https://images.unsplash.com/photo-1510672981848-a1c4f1cb58f1?auto=format&fit=crop&q=80&w=2000',
     year: 2024,
-    isFeatured: true,
   },
   {
     id: 2,
@@ -76,6 +86,7 @@ const brandingProjects = [
 ];
 
 const Branding = () => {
+  const navigate = useNavigate();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   
@@ -149,12 +160,13 @@ const Branding = () => {
           <div className="grid grid-cols-1 xl:grid-cols-[820px_minmax(520px,620px)] gap-4 md:gap-16 xl:gap-20 items-center max-w-[1520px] mx-auto">
             {/* Wide Hero Image */}
             <div 
+              onClick={() => featuredProject.slug && navigate(featuredProject.slug)}
               className="relative overflow-hidden w-full h-[220px] md:h-[600px] bg-brand-ink/5 group cursor-pointer"
             >
               <img 
                 src={featuredProject.image} 
                 alt={featuredProject.title} 
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="hidden md:block absolute top-4 left-4 md:top-8 md:left-8 bg-brand-accent/90 text-white text-[9px] md:text-[10px] font-bold tracking-[0.2em] px-3 md:px-4 py-1.5 uppercase">
@@ -164,18 +176,19 @@ const Branding = () => {
             
             {/* Project Details */}
             <div 
+              onClick={() => featuredProject.slug && navigate(featuredProject.slug)}
               className="space-y-4 md:space-y-7 py-2 md:py-8 pr-0 max-w-[620px] cursor-pointer group/text"
             >
               <div className="space-y-2 md:space-y-4">
                 <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">Newest Case · {featuredProject.year}</span>
-                <h2 className="text-[24px] md:text-[44px] lg:text-[56px] serif-kor leading-tight whitespace-pre-line">{featuredProject.title}</h2>
+                <h2 className="text-[24px] md:text-[44px] lg:text-[56px] serif-kor leading-tight whitespace-pre-line group-hover/text:text-brand-accent transition-colors">{featuredProject.title}</h2>
                 <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-[620px]">
                   {featuredProject.desc}
                 </p>
               </div>
               <div className="pt-0 md:pt-2">
                 <button 
-                  className="inline-flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 hover:border-brand-accent hover:text-brand-accent transition-all group"
+                  className="inline-flex items-center gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase border-b border-brand-ink/20 pb-1 group-hover/text:border-brand-accent group-hover/text:text-brand-accent transition-all group"
                 >
                   View Case Study
                   <motion.span 
