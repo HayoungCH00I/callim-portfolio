@@ -24,7 +24,7 @@ export const Section = ({
   className?: string; 
   id?: string;
 }) => (
-  <section id={id} className={cn("py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto", className)}>
+  <section id={id} className={cn("py-12 md:py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto", className)}>
     {children}
   </section>
 );

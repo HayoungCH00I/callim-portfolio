@@ -1,5 +1,6 @@
 import { Mail, Instagram, MapPin, Phone, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logoImage from '../images/logo.png';
 import threadsIcon from '../images/icons/threads.png';
 import smartstoreIcon from '../images/icons/smartstore.png';
 
@@ -8,7 +9,9 @@ export const Footer = () => (
     <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
       {/* BRAND SECTION */}
       <div className="md:col-span-2 space-y-6 md:space-y-8">
-        <h2 className="text-3xl font-bold serif">CALLI-M</h2>
+        <div className="flex items-center">
+          <img src={logoImage} alt="CALLI-M" className="h-8 md:h-12 w-auto" />
+        </div>
         <p className="text-sm opacity-60 leading-relaxed">
           <span className="md:hidden">아날로그의 온기를 전하는 감성 디자인 에이전시</span>
           <span className="hidden md:inline md:whitespace-nowrap">
@@ -72,7 +75,7 @@ export const Footer = () => (
           </div>
           <div className="flex gap-3">
             <Phone className="w-4 h-4 shrink-0 text-brand-accent" />
-            <span>031-911-1462</span>
+            <span>031-911-1607</span>
           </div>
           <div className="flex gap-3">
             <Mail className="w-4 h-4 shrink-0 text-brand-accent" />
