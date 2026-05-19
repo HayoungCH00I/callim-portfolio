@@ -64,7 +64,7 @@ const About = () => (
   <Section id="about" className="pt-10 pb-2 md:!pt-[150px] md:!pb-[150px]">
     <Reveal>
       <div className="mb-5 md:mb-16">
-        <h2 className="relative inline-block text-[20px] md:text-3xl font-sans font-medium uppercase tracking-tight">
+        <h2 className="relative inline-block text-[16px] md:text-3xl font-sans font-medium uppercase tracking-tight">
           ABOUT
           <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20 md:hidden" />
           <span className="absolute -bottom-2 left-0 hidden h-[2px] w-full bg-brand-ink/20 md:block" />
@@ -92,6 +92,14 @@ const About = () => (
               캘리엠은 이러한 아날로그적 정서를 현대적 디자인 솔루션으로 해석하여, 
               단순히 아름다운 결과물을 넘어 사용자의 마음과 맞닿는 경험을 창조합니다.
             </p>
+            <div className="hidden md:block pt-8">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-brand-ink/30 pb-1 text-brand-ink/80 hover:text-brand-accent hover:border-brand-accent transition-all"
+              >
+                READ MORE <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -100,7 +108,7 @@ const About = () => (
 );
 
 const BrandCore = () => (
-  <Section id="philosophy" className="mt-0 mb-0 pb-0 md:pb-0 md:my-12 !px-0 w-full !max-w-none overflow-hidden">
+  <Section id="philosophy" className="mt-0 mb-0 pb-0 md:!pt-0 md:pb-0 md:my-12 !px-0 w-full !max-w-none overflow-hidden">
     <div className="relative pt-0 pb-0 h-auto md:py-[200px] bg-[#a2ac93] w-screen left-1/2 -translate-x-1/2 md:w-auto md:left-auto md:translate-x-0">
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-16 w-full max-w-none md:max-w-[1640px] mx-auto px-0 md:px-20">
         {[
@@ -124,7 +132,7 @@ const BrandCore = () => (
             <div
               className={`relative min-h-[300px] flex items-center justify-center px-6 py-16 md:min-h-0 md:block md:px-0 md:py-0 ${
                 idx === 1
-                  ? 'w-full bg-[#f7f6f5] text-brand-ink md:w-auto md:bg-[#f7f6f5] md:text-brand-ink md:px-10 md:py-16'
+                  ? 'w-full bg-[#f7f6f5] text-brand-ink md:w-auto md:bg-transparent md:text-white'
                   : 'w-full bg-[#a2ac93] text-white md:w-auto md:bg-transparent'
               }`}
             >
@@ -132,7 +140,7 @@ const BrandCore = () => (
                 <div className="space-y-3 md:space-y-6 text-center">
                   <span
                     className={`text-[10px] uppercase tracking-[0.3em] font-bold ${
-                      idx === 1 ? 'text-brand-ink/40' : 'text-white/60'
+                      idx === 1 ? 'text-brand-ink/40 md:text-white/60' : 'text-white/60'
                     }`}
                   >
                     {item.title}
@@ -140,7 +148,7 @@ const BrandCore = () => (
 
                   <h3
                     className={`text-2xl md:text-3xl serif-kor ${
-                      idx === 1 ? 'text-brand-ink' : 'text-white'
+                      idx === 1 ? 'text-brand-ink md:text-white' : 'text-white'
                     }`}
                   >
                     {item.subtitle}
@@ -148,7 +156,7 @@ const BrandCore = () => (
 
                   <p
                     className={`text-sm leading-relaxed font-light max-w-xs mx-auto ${
-                      idx === 1 ? 'text-brand-ink/70' : 'text-white/80'
+                      idx === 1 ? 'text-brand-ink/70 md:text-white/80' : 'text-white/80'
                     }`}
                   >
                     {item.content}
@@ -162,6 +170,9 @@ const BrandCore = () => (
                 >
                   READ MORE <ArrowRight className="w-4 h-4" />
                 </Link>
+              )}
+              {idx < 2 && (
+                <div className="hidden md:block absolute -right-10 top-1/2 -translate-y-1/2 w-[1px] h-[150px] bg-white/20" />
               )}
             </div>
           </Fragment>
@@ -204,7 +215,7 @@ const Portfolio = () => {
     <Section id="portfolio" className="space-y-6 md:space-y-12 pt-10 md:!pt-24 !pb-0">
       <Reveal>
       <div className="mb-[30px] md:mb-16">
-        <h2 className="relative inline-block text-[20px] md:text-3xl font-sans font-medium uppercase tracking-tight">
+        <h2 className="relative inline-block text-[16px] md:text-3xl font-sans font-medium uppercase tracking-tight">
           PORTFOLIO
           <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20 md:hidden" />
           <span className="absolute -bottom-2 left-0 hidden h-[2px] w-full bg-brand-ink/20 md:block" />
@@ -271,47 +282,55 @@ const Portfolio = () => {
 };
 
 const BrandJournal = () => (
-  <Section id="journal" className="flex flex-col md:flex-row gap-4 md:gap-12 relative overflow-hidden pt-[28px] pb-[48px]">
-    {/* Mobile Only Title */}
+  <Section id="journal" className="relative overflow-hidden pt-[28px] pb-[48px] md:pt-[120px]">
+    {/* Mobile Title */}
     <div className="md:hidden mb-5">
       <Link to="/journals" className="flex justify-between items-baseline">
-        <h2 className="relative inline-block text-[20px] font-sans font-medium uppercase tracking-tight text-brand-ink/90">
+        <h2 className="relative inline-block text-[16px] font-sans font-medium uppercase tracking-tight text-brand-ink/90">
           JOURNALS
-          <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20 md:hidden" />
+          <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20" />
         </h2>
         <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase">VIEW ALL</span>
       </Link>
     </div>
 
-    <div className="md:w-1/2 md:sticky md:top-32 self-start h-[220px] md:h-[600px] w-full overflow-hidden">
+    {/* PC Title - ABOUT / PORTFOLIO처럼 왼쪽 정렬 */}
+    <div className="hidden md:block mb-16">
       <Reveal>
-      <div className="h-[220px] md:h-[600px] w-full">
-        <img 
-        src={mainBottomJournalMobile}
-        alt="Brand Journal Mobile" 
-        className="md:hidden w-full h-full object-cover object-[center_85%]"
-        referrerPolicy="no-referrer"
-        />
-        <img 
-        src={mainBottomJournal01}
-        alt="Brand Journal" 
-        className="hidden md:block w-full h-full object-cover object-[center_85%]"
-        referrerPolicy="no-referrer"
-        />
-      </div>
-    </Reveal>
-    </div>
-    <div className="md:w-1/2 space-y-4 md:space-y-16">
-      <div className="hidden md:block mb-8">
         <Link to="/journals" className="group flex justify-between items-baseline">
           <h2 className="relative inline-block text-3xl font-sans font-medium uppercase tracking-tight text-brand-ink/90 group-hover:text-brand-accent transition-colors">
             JOURNALS
             <span className="absolute -bottom-2 left-0 h-[2px] w-full bg-brand-ink/20 group-hover:bg-brand-accent/40 transition-colors" />
-           </h2>
-           <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">VIEW ALL</span>
+          </h2>
+          <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">
+            VIEW ALL
+          </span>
         </Link>
+      </Reveal>
+    </div>
+
+    {/* Image + Journal List */}
+    <div className="flex flex-col md:flex-row gap-4 md:gap-12 md:items-start">
+      <div className="md:w-1/2 self-start h-[220px] md:h-[600px] w-full overflow-hidden">
+        <Reveal>
+          <div className="h-[220px] md:h-[600px] w-full">
+            <img 
+              src={mainBottomJournalMobile}
+              alt="Brand Journal Mobile" 
+              className="md:hidden w-full h-full object-cover object-[center_85%]"
+              referrerPolicy="no-referrer"
+            />
+            <img 
+              src={mainBottomJournal01}
+              alt="Brand Journal" 
+              className="hidden md:block w-full h-full object-cover object-[center_85%]"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </Reveal>
       </div>
-      <div className="space-y-6 md:space-y-12 divide-y divide-brand-ink/5">
+
+      <div className="md:w-1/2 space-y-6 md:space-y-12 divide-y divide-brand-ink/5">
         {[
           {
             date: "2026.04.23",
