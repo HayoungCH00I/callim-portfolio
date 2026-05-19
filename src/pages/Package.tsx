@@ -24,10 +24,11 @@ const packageProjects = [
   },
   {
     id: 2,
-    title: '전통 차 세트 디자인',
-    desc: '차의 은은한 향기를 정갈한 붓놀림으로 표현한 전통 차 패키지',
-    image: 'https://images.unsplash.com/photo-1594631252845-2d330ae9c6f1?auto=format&fit=crop&q=80&w=800',
+    title: '어니스트케이푸드\n까나리어간장',
+    desc: '어니스트케이푸드의 깊은 풍미와 정성을 담은 프리미엄 까나리어간장 패키지',
+    image: featuredImage,
     year: 2023,
+    link: '/package/honest-k-food',
   },
   {
     id: 3,
@@ -35,6 +36,7 @@ const packageProjects = [
     desc: '자연 유래 성분의 순수함을 담은 미니멀한 텍스처와 라벨 디자인',
     image: 'https://images.unsplash.com/photo-1556229167-731383569762?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 4,
@@ -42,6 +44,7 @@ const packageProjects = [
     desc: '산지의 이야기를 담은 일러스트와 캘리그라피의 조화',
     image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 5,
@@ -49,6 +52,7 @@ const packageProjects = [
     desc: '쉼의 가치를 전달하는 차분한 톤의 숙소 전용 어메니티 패키지',
     image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&q=80&w=800',
     year: 2021,
+    isPlaceholder: true,
   },
   {
     id: 6,
@@ -56,6 +60,7 @@ const packageProjects = [
     desc: '달콤한 결실을 축하하는 화사한 색감의 라벨 시스템',
     image: 'https://images.unsplash.com/photo-1589733904268-9de9048a1081?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
   {
     id: 7,
@@ -63,6 +68,7 @@ const packageProjects = [
     desc: '깊은 풍미와 세월의 가치를 담은 클래식한 실링 왁스와 타이포그래피',
     image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 8,
@@ -70,6 +76,7 @@ const packageProjects = [
     desc: '섬세한 종이 질감과 수작업의 정성을 느낄 수 있는 북케이스',
     image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 9,
@@ -77,6 +84,7 @@ const packageProjects = [
     desc: '부드러운 손길을 연상시키는 타이포 위주의 친환경 포장 재질',
     image: 'https://images.unsplash.com/photo-1534349762230-e0cadf78f5ea?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
 ];
 
@@ -88,7 +96,7 @@ const Package = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   // Filter States
-  const [yearRange, setYearRange] = useState({ min: 2020, max: 2024 });
+  const [yearRange, setYearRange] = useState({ min: 2016, max: 2026 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
 
   useEffect(() => {
@@ -116,7 +124,7 @@ const Package = () => {
 
   const filteredProjects = useMemo(() => {
     // Exclude featured projects from the main list
-    let result = packageProjects.filter(p => !p.isFeatured);
+    let result = packageProjects.filter(p => !p.isFeatured && !p.isPlaceholder);
 
     // Apply Year Filter
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
@@ -242,29 +250,29 @@ const Package = () => {
                     <div 
                       className="absolute h-[2px] bg-brand-accent"
                       style={{
-                        left: `${((yearRange.min - 2020) / 4) * 100}%`,
-                        right: `${100 - ((yearRange.max - 2020) / 4) * 100}%`
+                        left: `${((yearRange.min - 2016) / 10) * 100}%`,
+                        right: `${100 - ((yearRange.max - 2016) / 10) * 100}%`
                       }}
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.min}
                       onChange={(e) => setYearRange({ ...yearRange, min: Math.min(Number(e.target.value), yearRange.max) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.max}
                       onChange={(e) => setYearRange({ ...yearRange, max: Math.max(Number(e.target.value), yearRange.min) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                   </div>
                   <div className="flex justify-between text-[9px] font-bold opacity-30 mt-2">
-                    <span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span>
+                    <span>2016</span><span>2022</span><span>2024</span><span>2026</span>
                   </div>
                 </div>
 

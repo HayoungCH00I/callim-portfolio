@@ -22,10 +22,11 @@ const brandingProjects = [
   },
   {
     id: 1,
-    title: '미분당 브랜드 아이덴티티',
-    desc: '쌀국수 전문점의 고유한 감성을 담은 붓터치 로고와 브랜딩 시스템',
-    image: 'https://images.unsplash.com/photo-1510672981848-a1c4f1cb58f1?auto=format&fit=crop&q=80&w=2000',
-    year: 2024,
+    title: '친환경 원목 어린이 가구 브랜드 리뉴얼',
+    desc: '브랜드의 철학과 감성을 다시 정의하며 시각적 일관성과 브랜드 방향성을 구축한 전략 브랜딩 프로젝트입니다.',
+    image: featuredImage,
+    year: 2026,
+    slug: '/project/brand-renewal'
   },
   {
     id: 2,
@@ -33,6 +34,7 @@ const brandingProjects = [
     desc: '시민의 목소리를 담은 캘리그라피 아트워크와 그래픽 가이드',
     image: 'https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
   {
     id: 3,
@@ -40,6 +42,7 @@ const brandingProjects = [
     desc: '친환경 화장품 브랜드의 결을 살린 서체와 비주얼 디자인',
     image: 'https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ const brandingProjects = [
     desc: '매달 새로운 붓글씨로 만나는 일상 속 예술 프로젝트',
     image: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 5,
@@ -54,6 +58,7 @@ const brandingProjects = [
     desc: '시간의 흔적과 문학적 감수성을 담아낸 캘리그라피 커버',
     image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800',
     year: 2021,
+    isPlaceholder: true,
   },
   {
     id: 6,
@@ -61,6 +66,7 @@ const brandingProjects = [
     desc: '전통의 현대적 재해석, 우아한 붓놀림으로 표현된 로고',
     image: 'https://images.unsplash.com/photo-1569437061241-a848be43cc82?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const brandingProjects = [
     desc: '쉼의 가치를 담은 감성 숙소의 통합 시각 언어 구축',
     image: 'https://images.unsplash.com/photo-1506422748170-36946330058b?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 8,
@@ -75,6 +82,7 @@ const brandingProjects = [
     desc: '국립한글박물관 특별 전시의 메인 테마 및 어플리케이션 디자인',
     image: 'https://images.unsplash.com/photo-1512411425032-15f793540c4a?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 9,
@@ -82,6 +90,7 @@ const brandingProjects = [
     desc: '숲속의 여유로운 휴식을 형상화한 유기적 라인의 로고 마크',
     image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
 ];
 
@@ -93,7 +102,7 @@ const Branding = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   // Filter States
-  const [yearRange, setYearRange] = useState({ min: 2020, max: 2024 });
+  const [yearRange, setYearRange] = useState({ min: 2016, max: 2026 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
 
   useEffect(() => {
@@ -121,7 +130,7 @@ const Branding = () => {
 
   const filteredProjects = useMemo(() => {
     // Exclude featured projects from the main list
-    let result = brandingProjects.filter(p => !p.isFeatured);
+    let result = brandingProjects.filter(p => !p.isFeatured && !p.isPlaceholder);
 
     // Apply Year Filter
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
@@ -240,29 +249,29 @@ const Branding = () => {
                     <div 
                       className="absolute h-[2px] bg-brand-accent"
                       style={{
-                        left: `${((yearRange.min - 2020) / 4) * 100}%`,
-                        right: `${100 - ((yearRange.max - 2020) / 4) * 100}%`
+                        left: `${((yearRange.min - 2016) / 10) * 100}%`,
+                        right: `${100 - ((yearRange.max - 2016) / 10) * 100}%`
                       }}
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.min}
                       onChange={(e) => setYearRange({ ...yearRange, min: Math.min(Number(e.target.value), yearRange.max) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.max}
                       onChange={(e) => setYearRange({ ...yearRange, max: Math.max(Number(e.target.value), yearRange.min) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                   </div>
                   <div className="flex justify-between text-[9px] font-bold opacity-30 mt-2">
-                    <span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span>
+                    <span>2016</span><span>2020</span><span>2024</span><span>2026</span>
                   </div>
                 </div>
 
@@ -308,9 +317,10 @@ const Branding = () => {
            return (
              <Reveal key={project.id} delay={(idx % 3) * 0.1}>
               <div 
-                className={cn(
-                  "group cursor-pointer transition-transform duration-500",
-                  thumbnailYOffsets[idx % 3]
+                 onClick={() => project.slug && navigate(project.slug)}
+                 className={cn(
+                 "group cursor-pointer transition-transform duration-500",
+                 thumbnailYOffsets[idx % 3]
                 )}
               >
                 <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-3 md:mb-[20px] relative">

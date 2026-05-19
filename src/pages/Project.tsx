@@ -16,16 +16,16 @@ const projectList = [
     title: '성인문해교육 시화전',
     desc: '문해 학습자들의 시와 그림에 담긴 삶의 이야기를 따뜻한 시선으로 풀어낸 공공 디자인 프로젝트입니다.',
     image: literacyFeatured,
-    year: 2024,
+    year: 2026,
     link: '/project/literacy-art-exhibition',
     isFeatured: true,
   },
   {
     id: 2,
-    title: '전주 문화유산 브랜딩 프로젝트',
-    desc: '시간의 궤적을 잇는 전통 문양의 현대적 재구성 및 통합 아이덴티티',
-    image: featuredImage,
-    year: 2024,
+    title: '성인문해교육 시화전',
+    desc: '문해 학습자들의 시와 그림에 담긴 삶의 이야기를 따뜻한 시선으로 풀어낸 공공 디자인 프로젝트입니다.',
+    image: literacyFeatured,
+    year: 2026,
   },
   {
     id: 3,
@@ -33,6 +33,7 @@ const projectList = [
     desc: '예술적 가치와 대중의 연결을 형상화한 유연한 그래픽 모티프',
     image: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
   {
     id: 4,
@@ -40,6 +41,7 @@ const projectList = [
     desc: '지역 공동체의 활성화를 돕는 따뜻한 시선의 커뮤니티 디자인',
     image: 'https://images.unsplash.com/photo-1449156001935-cf2d41a7911b?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 5,
@@ -47,6 +49,7 @@ const projectList = [
     desc: '지식의 확산과 성장을 담은 기하학적 라인 아트 프로젝트',
     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 6,
@@ -54,6 +57,7 @@ const projectList = [
     desc: '자연의 회복력을 붓터치의 생동감으로 표현한 환경 프로젝트',
     image: 'https://images.unsplash.com/photo-1542601906970-d4d80754037b?auto=format&fit=crop&q=80&w=800',
     year: 2021,
+    isPlaceholder: true,
   },
   {
     id: 7,
@@ -61,6 +65,7 @@ const projectList = [
     desc: '다양한 국적과 문화의 화합을 상징하는 다채로운 패턴 시스템',
     image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
   {
     id: 8,
@@ -68,6 +73,7 @@ const projectList = [
     desc: '도전과 혁신의 에너지를 담은 대담한 컬러와 타이포그래피',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800',
     year: 2024,
+    isPlaceholder: true,
   },
   {
     id: 9,
@@ -75,6 +81,7 @@ const projectList = [
     desc: '공간의 흐름과 작품이 하나로 어우러지는 경험 디자인 프로젝트',
     image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800',
     year: 2022,
+    isPlaceholder: true,
   },
   {
     id: 10,
@@ -82,6 +89,7 @@ const projectList = [
     desc: '방대한 데이터를 직관적으로 탐색할 수 있는 체계적인 디자인 시스템',
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
     year: 2023,
+    isPlaceholder: true,
   },
 ];
 
@@ -92,7 +100,7 @@ const Project = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   // Filter States
-  const [yearRange, setYearRange] = useState({ min: 2020, max: 2024 });
+  const [yearRange, setYearRange] = useState({ min: 2016, max: 2026 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
 
   useEffect(() => {
@@ -120,7 +128,7 @@ const Project = () => {
 
   const filteredProjects = useMemo(() => {
     // Exclude featured projects from the main list
-    let result = projectList.filter(p => !p.isFeatured);
+    let result = projectList.filter(p => !p.isFeatured && !p.isPlaceholder);
 
     // Apply Year Filter
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
@@ -245,29 +253,29 @@ const Project = () => {
                     <div 
                       className="absolute h-[2px] bg-brand-accent"
                       style={{
-                        left: `${((yearRange.min - 2020) / 4) * 100}%`,
-                        right: `${100 - ((yearRange.max - 2020) / 4) * 100}%`
+                        left: `${((yearRange.min - 2016) / 10) * 100}%`,
+                        right: `${100 - ((yearRange.max - 2016) / 10) * 100}%`
                       }}
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.min}
                       onChange={(e) => setYearRange({ ...yearRange, min: Math.min(Number(e.target.value), yearRange.max) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                     <input
                       type="range"
-                      min="2020"
-                      max="2024"
+                      min="2016"
+                      max="2026"
                       value={yearRange.max}
                       onChange={(e) => setYearRange({ ...yearRange, max: Math.max(Number(e.target.value), yearRange.min) })}
                       className="absolute w-full appearance-none bg-transparent pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-brand-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-[0_0_0_4px_rgba(255,255,255,1)]"
                     />
                   </div>
                   <div className="flex justify-between text-[9px] font-bold opacity-30 mt-2">
-                    <span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span>
+                    <span>2016</span><span>2022</span><span>2024</span><span>2026</span>
                   </div>
                 </div>
 

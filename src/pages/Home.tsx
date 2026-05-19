@@ -36,21 +36,21 @@ const Hero = () => (
         className="hidden md:block w-full h-full object-cover object-center"
       />
     </div>
-    <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <div className="relative z-10 text-center px-6 max-w-[1500px] mx-auto">
       <Reveal>
-        <h1 className="text-[40px] md:text-[66px] font-serif italic mb-8 text-white leading-tight drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+        <h1 className="w-full md:w-[1500px] mx-auto text-[40px] md:text-[100px] font-serif italic mb-8 text-white leading-tight drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
           Little Things, <br className="md:hidden" /> More Precious
         </h1>
       </Reveal>
       <Reveal delay={0.2}>
-        <h2 className="text-[14px] md:text-[22px] font-bold mb-6 md:mb-10 serif-kor tracking-widest text-white/100 drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+        <h2 className="text-[14px] md:text-[30px] font-bold mb-6 md:mb-10 serif-kor tracking-widest text-white/100 drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
           아날로그의 온기로 <br className="md:hidden" />일상의 가치를 디자인합니다
         </h2>
       </Reveal>
       <div className="hidden md:block">
         <Reveal delay={0.4}>
-          <div className="w-16 h-px bg-white/40 mx-auto mb-8" />
-          <p className="text-[11px] md:text-[13px] text-white/90 max-w-sm mx-auto leading-relaxed tracking-[0.2em] uppercase font-bold drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+          <div className="w-40 h-[2px] bg-white/40 mx-auto mb-10" />
+          <p className="text-[19px] text-white/100 max-w-xl mx-auto leading-relaxed tracking-[0.1em] uppercase font-bold drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
             소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
             캘리엠이 전하는 따스한 시각 언어
           </p>
@@ -63,11 +63,10 @@ const Hero = () => (
 const About = () => (
   <Section id="about" className="pt-10 pb-2 md:!pt-[150px] md:!pb-[150px]">
     <Reveal>
-      <div className="mb-5 md:mb-16">
-        <h2 className="relative inline-block text-[16px] md:text-3xl font-sans font-medium uppercase tracking-tight">
+      <div className="mb-5 md:mb-8">
+        <h2 className="relative inline-block text-[16px] font-sans font-medium uppercase tracking-tight md:pt-5 md:text-8xl md:font-serif md:tracking-tighter md:text-brand-ink md:opacity-10">
           ABOUT
           <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20 md:hidden" />
-          <span className="absolute -bottom-2 left-0 hidden h-[2px] w-full bg-brand-ink/20 md:block" />
         </h2>
       </div>
     </Reveal>
@@ -212,13 +211,12 @@ const Portfolio = () => {
   ];
 
   return (
-    <Section id="portfolio" className="space-y-6 md:space-y-12 pt-10 md:!pt-24 !pb-0">
+    <Section id="portfolio" className="space-y-6 md:space-y-6 pt-10 md:!pt-[100px] !pb-0">
       <Reveal>
-      <div className="mb-[30px] md:mb-16">
-        <h2 className="relative inline-block text-[16px] md:text-3xl font-sans font-medium uppercase tracking-tight">
+      <div className="mb-[30px] md:mb-[8px]">
+        <h2 className="relative inline-block text-[16px] font-sans font-medium uppercase tracking-tight md:pt-5 md:text-8xl md:font-serif md:tracking-tighter md:text-brand-ink md:opacity-10">
           PORTFOLIO
           <span className="absolute -bottom-2 right-0 h-[2px] w-screen bg-brand-ink/20 md:hidden" />
-          <span className="absolute -bottom-2 left-0 hidden h-[2px] w-full bg-brand-ink/20 md:block" />
         </h2>
       </div>
     </Reveal>
@@ -295,12 +293,11 @@ const BrandJournal = () => (
     </div>
 
     {/* PC Title - ABOUT / PORTFOLIO처럼 왼쪽 정렬 */}
-    <div className="hidden md:block mb-16">
+    <div className="hidden md:block mb-8">
       <Reveal>
         <Link to="/journals" className="group flex justify-between items-baseline">
-          <h2 className="relative inline-block text-3xl font-sans font-medium uppercase tracking-tight text-brand-ink/90 group-hover:text-brand-accent transition-colors">
+          <h2 className="relative inline-block text-3xl font-sans font-medium uppercase tracking-tight text-brand-ink/90 md:pt-5 md:text-8xl md:font-serif md:tracking-tighter md:text-brand-ink md:opacity-10 group-hover:text-brand-accent transition-all">
             JOURNALS
-            <span className="absolute -bottom-2 left-0 h-[2px] w-full bg-brand-ink/20 group-hover:bg-brand-accent/40 transition-colors" />
           </h2>
           <span className="text-[10px] opacity-40 font-bold tracking-[0.3em] uppercase group-hover:opacity-60 transition-opacity">
             VIEW ALL

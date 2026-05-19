@@ -4,7 +4,6 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Section, Reveal } from '../components/Common';
 import biImage01 from '../images/about/bi-01.webp';
-import bravoMyLifeVideo from '../images/about/bravo-my-life.mp4';
 
 const PageHeader = () => (
   <Section id="page-header" className="pt-16 pb-1 md:pt-48 md:pb-4">
@@ -96,40 +95,103 @@ const BrandValues = () => (
 );
 
 const BrandIdentity = () => (
-  <Section id="brand-identity" className="py-24 md:py-40">
+  <Section id="brand-identity" className="pt-24 pb-24 md:pt-[250px] md:pb-40 !max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+    {/* Section Header */}
     <Reveal>
-      <div className="mb-12 md:mb-20 text-center">
-        <span className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-bold">Design Assets</span>
-        <h2 className="text-[20px] md:text-4xl font-sans font-medium tracking-tight mt-4">Brand Identity</h2>
+      <div className="mb-12 md:mb-16 text-center">
+        <span className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-bold mb-4 block">About CALLI-M</span>
+        <h2 className="text-[28px] md:text-5xl font-sans font-medium tracking-tight text-brand-ink mb-8">Brand Identity</h2>
+        <p className="text-base md:text-lg leading-relaxed text-brand-ink/60 max-w-[720px] mx-auto break-keep font-sans">
+          캘리엠(CalliM)의 로고는 알파벳 ‘C’와 ‘M’의 유기적인 결합을 통해, 
+          감성 콘텐츠를 기반으로 제품과 서비스를 만들어가는 브랜드의 비전을 시각화합니다.
+        </p>
       </div>
     </Reveal>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-      <Reveal delay={0}>
-        <div className="bg-white border border-brand-ink/5 rounded-2xl p-12 md:p-20 aspect-[4/3] flex items-center justify-center overflow-hidden">
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[1200px] mx-auto">
+      {/* 1. BI Image Card (Top Left) */}
+      <Reveal delay={0.1}>
+        <div className="border border-brand-ink/10 rounded-2xl md:h-[400px] aspect-square md:aspect-auto flex flex-col items-center justify-center p-8 md:p-16 relative overflow-hidden group">
           <img 
             src={biImage01} 
-            alt="CALLI-M BI 1" 
-            className="w-full h-full object-contain"
+            alt="CALLI-M BI" 
+            className="w-full h-auto max-w-[480px] object-contain relative z-10 transition-transform duration-500 group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
         </div>
       </Reveal>
 
+      {/* 2. Brand Concept Card (Top Right) */}
       <Reveal delay={0.2}>
-        <div className="bg-white border border-brand-ink/5 rounded-2xl p-0 md:p-0 aspect-[4/3] flex items-center justify-center overflow-hidden">
-          <video
-            src={bravoMyLifeVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="CALLI-M brand identity motion"
-            className="w-full h-full object-contain"
-          />
+        <div className="md:w-[596px] md:h-[400px] p-8 md:p-16 flex flex-col justify-end">
+          <div className="space-y-6">
+            <span className="text-[11px] font-bold tracking-[0.3em] text-brand-accent/50 uppercase">01. Brand Concept</span>
+            <div className="space-y-4">
+              <h4 className="text-[22px] md:text-4xl font-bold leading-tight serif-kor text-brand-ink">감성을 짓고, 가치를 만들다</h4>
+              <p className="text-sm md:text-base leading-relaxed text-brand-ink/70 break-keep font-sans">
+                캘리엠의 ‘Calli’는 단순히 아름다운 손글씨에 머무르지 않습니다.
+                사람의 온기와 마음을 담아내는 감성 콘텐츠로서, 일상에 아날로그적 감성과 따뜻한 이야기를 불어넣습니다.
+              </p>
+            </div>
+          </div>
         </div>
       </Reveal>
+
+      {/* 3. Meaning of M Card (Bottom Wide) */}
+      <div className="md:col-span-2">
+        <Reveal delay={0.3}>
+          <div className="p-8 md:p-16 lg:pt-24 border-t border-brand-ink/10">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+              {/* Summary Area */}
+              <div className="lg:w-1/3 flex flex-col justify-between py-2">
+                <div className="space-y-6">
+                  <span className="text-[11px] font-bold tracking-[0.3em] text-brand-accent/50 uppercase">02. Meaning of 'M'</span>
+                  <div className="space-y-4">
+                    <h4 className="text-[22px] md:text-4xl font-bold leading-tight serif-kor text-brand-ink">Merchandise & Make</h4>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Keyword Cards Area */}
+              <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-8 border border-brand-ink/10 rounded-xl space-y-6 group hover:border-brand-accent/20 transition-colors">
+                  <div className="space-y-3">
+                    <h5 className="text-2xl font-bold text-brand-accent">Merchandise</h5>
+                  </div>
+                  <p className="text-sm leading-relaxed text-brand-ink/70 break-keep font-sans">
+                    감성 콘텐츠를 제품과 굿즈로 구현하여 고객의 라이프스타일을 풍요롭게 채웁니다.
+                  </p>
+                </div>
+
+                <div className="p-8 border border-brand-ink/10 rounded-xl space-y-6 group hover:border-brand-accent/20 transition-colors">
+                  <div className="space-y-3">
+                    <h5 className="text-2xl font-bold text-brand-accent">Make</h5>
+                  </div>
+                  <p className="text-sm leading-relaxed text-brand-ink/70 break-keep font-sans">
+                    아이디어와 감성을 서비스와 비즈니스로 직접 만들어내며 새로운 가치를 창출합니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </div>
+
+    {/* Final Sentence (Subtle) - Hidden as requested
+    <Reveal delay={0.4}>
+      <div className="mt-16 text-left md:text-center">
+        <p className="text-[32px] md:text-[35px] leading-tight md:leading-relaxed text-brand-accent font-sans font-medium break-keep">
+          <span className="serif-kor text-[1.2em] leading-none">"</span>
+          캘리엠은 <br />
+          사람의 마음을 움직이는 감성 콘텐츠를 기반으로, <br />
+          세상에 꼭 필요한 제품과 가치 있는 서비스를 만들어갑니다.
+          <span className="serif-kor text-[1.2em] leading-none">"</span>
+        </p>
+      </div>
+    </Reveal>
+    */}
   </Section>
 );
 
