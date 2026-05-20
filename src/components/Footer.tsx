@@ -44,7 +44,7 @@ export const Footer = () => (
             <img src={smartstoreIcon} alt="Smart Store" className="w-3.5 h-3.5 object-contain" />
           </a>
           <a 
-            href="https://callim-design.com/" 
+            href="https://calli-m.com/" 
             target="_blank" 
             rel="noreferrer"
             className="w-7 h-7 rounded-full border border-brand-ink/10 flex items-center justify-center hover:bg-brand-ink hover:text-brand-bg transition-colors"
