@@ -16,7 +16,7 @@ import mainMiddleProject from "../images/main/project.jpg";
 // import branding02 from "../images/main/branding_02.jpg"; // 포트폴리오 추가 이미지 예정
 // import package02 from "../images/main/package_02.jpg"; // 포트폴리오 추가 이미지 예정
 
-import mainBottomJournal01 from "../images/main/journal.jpg";
+import mainBottomJournal01 from "../images/main/journal.webp";
 import mainBottomJournalMobile from "../images/main/journal_mobile.webp";
 // import journal02 from "../images/main/journal02.jpg"; // 저널 추가 이미지 예정
 // import journal03 from "../images/main/journal03.jpg"; // 저널 추가 이미지 예정

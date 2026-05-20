@@ -190,7 +190,7 @@ const Branding = () => {
             >
               <div className="space-y-2 md:space-y-4">
                 <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">Newest Case · {featuredProject.year}</span>
-                <h2 className="text-[24px] md:text-[44px] lg:text-[56px] serif-kor leading-tight whitespace-pre-line group-hover/text:text-brand-accent transition-colors">{featuredProject.title}</h2>
+                <h2 className="text-[24px] md:text-[44px] lg:text-[30px] serif-kor leading-tight whitespace-pre-line group-hover/text:text-brand-accent transition-colors">{featuredProject.title}</h2>
                 <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-[620px]">
                   {featuredProject.desc}
                 </p>
