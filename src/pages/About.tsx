@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Section, Reveal } from '../components/Common';
-import biImage01 from '../images/about/bi-01.webp';
+import biImage02 from '../images/about/bi-02.webp';
+import biImage03 from '../images/about/bi-03.webp';
 
 const PageHeader = () => (
   <Section id="page-header" className="pt-16 pb-1 md:pt-48 md:pb-4">
@@ -95,40 +96,55 @@ const BrandValues = () => (
 );
 
 const BrandIdentity = () => (
-  <Section id="brand-identity" className="pt-24 pb-24 md:pt-[250px] md:pb-40 !max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+  <Section id="brand-identity" className="pt-24 pb-24 md:pt-[200px] md:pb-40 !max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
     {/* Section Header */}
     <Reveal>
       <div className="mb-12 md:mb-16 text-center">
         <span className="text-[11px] uppercase tracking-[0.3em] opacity-40 font-bold mb-4 block">About CALLI-M</span>
         <h2 className="text-[28px] md:text-5xl font-sans font-medium tracking-tight text-brand-ink mb-8">Brand Identity</h2>
-        <p className="text-base md:text-lg leading-relaxed text-brand-ink/60 max-w-[720px] mx-auto break-keep font-sans">
+        <p className="text-[14px] md:text-[20px] leading-relaxed text-brand-ink/60 max-w-[720px] mx-auto break-keep font-sans">
           캘리엠(CalliM)의 로고는 알파벳 ‘C’와 ‘M’의 유기적인 결합을 통해, 
           감성 콘텐츠를 기반으로 제품과 서비스를 만들어가는 브랜드의 비전을 시각화합니다.
         </p>
       </div>
     </Reveal>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[1200px] mx-auto">
-      {/* 1. BI Image Card (Top Left) */}
+    {/* Brand Images Container (Wide layout) */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-[1120px] mx-auto mb-16 md:mb-24">
       <Reveal delay={0.1}>
-        <div className="border border-brand-ink/10 rounded-2xl md:h-[400px] aspect-square md:aspect-auto flex flex-col items-center justify-center p-8 md:p-16 relative overflow-hidden group">
+        <div className="border border-brand-ink/10 rounded-2xl flex items-center justify-center p-6 md:p-8 relative overflow-hidden group bg-brand-ink/[0.01] aspect-[2/1] w-full">
           <img 
-            src={biImage01} 
-            alt="CALLI-M BI" 
-            className="w-full h-auto max-w-[480px] object-contain relative z-10 transition-transform duration-500 group-hover:scale-105"
+            src={biImage02} 
+            alt="CALLI-M BI 02" 
+            className="w-[82%] max-w-none h-auto object-contain relative z-10 transition-transform duration-500 group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
         </div>
       </Reveal>
+      <Reveal delay={0.15}>
+        <div className="border border-brand-ink/10 rounded-2xl flex items-center justify-center p-6 md:p-8 relative overflow-hidden group bg-brand-ink/[0.01] aspect-[2/1] w-full">
+          <img 
+            src={biImage03} 
+            alt="CALLI-M BI 03" 
+            className="w-[82%] max-w-none h-auto object-contain relative z-10 transition-transform duration-500 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </Reveal>
+    </div>
 
-      {/* 2. Brand Concept Card (Top Right) */}
+    {/* Brand Text Details (Columner Brochure layout) */}
+    <div className="max-w-[1120px] mx-auto space-y-24 md:space-y-32">
+      {/* 01. Brand Concept */}
       <Reveal delay={0.2}>
-        <div className="md:w-[596px] md:h-[400px] p-8 md:p-16 flex flex-col justify-end">
-          <div className="space-y-6">
-            <span className="text-[11px] font-bold tracking-[0.3em] text-brand-accent/50 uppercase">01. Brand Concept</span>
-            <div className="space-y-4">
-              <h4 className="text-[22px] md:text-4xl font-bold leading-tight serif-kor text-brand-ink">감성을 짓고, 가치를 만들다</h4>
-              <p className="text-sm md:text-base leading-relaxed text-brand-ink/70 break-keep font-sans">
+        <div className="space-y-0.3 md:space-y-6 text-left">
+          <span className="text-[11px] md:text-[12px] font-bold tracking-[0.18em] text-brand-accent/60 uppercase block">01. Brand Concept</span>
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(360px,440px)_1fr] gap-3 md:gap-16 items-start">
+            {/* Left Column */}
+            <h4 className="text-[26px] md:text-[31px] lg:text-[34px] font-bold leading-tight serif-kor text-brand-ink md:whitespace-nowrap">감성을 짓고, 가치를 만들다</h4>
+            {/* Right Column */}
+            <div>
+              <p className="text-[14px] md:text-[20px] leading-[1.75] text-brand-ink/75 break-keep font-sans">
                 캘리엠의 ‘Calli’는 단순히 아름다운 손글씨에 머무르지 않습니다.
                 사람의 온기와 마음을 담아내는 감성 콘텐츠로서, 일상에 아날로그적 감성과 따뜻한 이야기를 불어넣습니다.
               </p>
@@ -137,61 +153,40 @@ const BrandIdentity = () => (
         </div>
       </Reveal>
 
-      {/* 3. Meaning of M Card (Bottom Wide) */}
-      <div className="md:col-span-2">
-        <Reveal delay={0.3}>
-          <div className="p-8 md:p-16 lg:pt-24 border-t border-brand-ink/10">
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-              {/* Summary Area */}
-              <div className="lg:w-1/3 flex flex-col justify-between py-2">
-                <div className="space-y-6">
-                  <span className="text-[11px] font-bold tracking-[0.3em] text-brand-accent/50 uppercase">02. Meaning of 'M'</span>
-                  <div className="space-y-4">
-                    <h4 className="text-[22px] md:text-4xl font-bold leading-tight serif-kor text-brand-ink">Merchandise & Make</h4>
-                  </div>
-                </div>
 
+      {/* 02. Meaning of 'M' */}
+      <Reveal delay={0.3}>
+        <div className="space-y-0.3 md:space-y-4 text-left">
+          <span className="text-[11px] md:text-[12px] font-bold tracking-[0.18em] text-brand-accent/60 uppercase block">02. Meaning of 'M'</span>
+          <div className="grid grid-cols-1 md:grid-cols-[minmax(360px,440px)_1fr] gap-3 md:gap-16 items-start">
+            {/* Left Column */}
+            <h4 className="text-[26px] md:text-[31px] lg:text-[34px] font-bold leading-tight serif-kor text-brand-ink md:whitespace-nowrap">Merchandise & Make</h4>
+            {/* Right Column */}
+            <div className="space-y-6 md:space-y-4 w-full">
+              <p className="text-[14px] md:text-[20px] leading-[1.75] text-brand-ink/75 break-keep font-sans">
+                'Calli'라는 감성적 토대 위에 결합된 'M'은 캘리엠이 나아가는 실천적 방향성을 상징합니다.
+              </p>
+
+              {/* Merchandise */}
+              <div className="space-y-[6px]">
+                <h5 className="text-[19px] md:text-[23px] font-sans font-semibold text-brand-ink/80">Merchandise</h5>
+                <p className="text-[16px] md:text-[18px] leading-[1.75] text-brand-accent break-keep font-sans">
+                  감성 콘텐츠를 제품과 굿즈로 구현하여 고객의 라이프스타일을 풍요롭게 채웁니다.
+                </p>
               </div>
 
-              {/* Keyword Cards Area */}
-              <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-8 border border-brand-ink/10 rounded-xl space-y-6 group hover:border-brand-accent/20 transition-colors">
-                  <div className="space-y-3">
-                    <h5 className="text-2xl font-bold text-brand-accent">Merchandise</h5>
-                  </div>
-                  <p className="text-sm leading-relaxed text-brand-ink/70 break-keep font-sans">
-                    감성 콘텐츠를 제품과 굿즈로 구현하여 고객의 라이프스타일을 풍요롭게 채웁니다.
-                  </p>
-                </div>
-
-                <div className="p-8 border border-brand-ink/10 rounded-xl space-y-6 group hover:border-brand-accent/20 transition-colors">
-                  <div className="space-y-3">
-                    <h5 className="text-2xl font-bold text-brand-accent">Make</h5>
-                  </div>
-                  <p className="text-sm leading-relaxed text-brand-ink/70 break-keep font-sans">
-                    아이디어와 감성을 서비스와 비즈니스로 직접 만들어내며 새로운 가치를 창출합니다.
-                  </p>
-                </div>
+              {/* Make */}
+              <div className="space-y-[6px]">
+                <h5 className="text-[19px] md:text-[23px] font-sans font-semibold text-brand-ink/80">Make</h5>
+                <p className="text-[16px] md:text-[18px] leading-[1.75] text-brand-accent break-keep font-sans">
+                  아이디어와 감성을 서비스와 비즈니스로 직접 만들어내며 새로운 가치를 창출합니다.
+                </p>
               </div>
             </div>
           </div>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
     </div>
-
-    {/* Final Sentence (Subtle) - Hidden as requested
-    <Reveal delay={0.4}>
-      <div className="mt-16 text-left md:text-center">
-        <p className="text-[32px] md:text-[35px] leading-tight md:leading-relaxed text-brand-accent font-sans font-medium break-keep">
-          <span className="serif-kor text-[1.2em] leading-none">"</span>
-          캘리엠은 <br />
-          사람의 마음을 움직이는 감성 콘텐츠를 기반으로, <br />
-          세상에 꼭 필요한 제품과 가치 있는 서비스를 만들어갑니다.
-          <span className="serif-kor text-[1.2em] leading-none">"</span>
-        </p>
-      </div>
-    </Reveal>
-    */}
   </Section>
 );
 

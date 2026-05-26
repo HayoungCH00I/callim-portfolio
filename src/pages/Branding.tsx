@@ -166,7 +166,7 @@ const Branding = () => {
       {/* Latest Featured Portfolio Section */}
       <section className="py-5 md:py-16 px-6 md:px-12 lg:px-24 border-t border-brand-ink/5 max-w-[2400px] mx-auto overflow-hidden">
         <Reveal>
-          <div className="grid grid-cols-1 xl:grid-cols-[820px_minmax(520px,620px)] gap-4 md:gap-16 xl:gap-20 items-center max-w-[1520px] mx-auto">
+          <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,760px)_minmax(0,560px)] gap-4 md:gap-12 xl:gap-16 items-center max-w-[1400px] mx-auto">
             {/* Wide Hero Image */}
             <div 
               onClick={() => featuredProject.slug && navigate(featuredProject.slug)}
@@ -186,12 +186,12 @@ const Branding = () => {
             {/* Project Details */}
             <div 
               onClick={() => featuredProject.slug && navigate(featuredProject.slug)}
-              className="space-y-4 md:space-y-7 py-2 md:py-8 pr-0 max-w-[620px] cursor-pointer group/text"
+              className="min-w-0 space-y-4 md:space-y-7 py-2 md:py-8 pr-0 max-w-[620px] cursor-pointer group/text"
             >
               <div className="space-y-2 md:space-y-4">
                 <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] opacity-40 uppercase">Newest Case · {featuredProject.year}</span>
-                <h2 className="text-[24px] md:text-[44px] lg:text-[30px] serif-kor leading-tight whitespace-pre-line group-hover/text:text-brand-accent transition-colors">{featuredProject.title}</h2>
-                <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-[620px]">
+                <h2 className="text-[24px] md:text-[44px] lg:text-[30px] serif-kor leading-tight whitespace-normal break-keep group-hover/text:text-brand-accent transition-colors">{featuredProject.title}</h2>
+                <p className="text-[14px] md:text-[18px] serif-kor opacity-60 leading-relaxed w-full max-w-full break-keep">
                   {featuredProject.desc}
                 </p>
               </div>

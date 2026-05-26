@@ -11,6 +11,14 @@ import prod1 from '../images/product/1.webp';
 import prod2 from '../images/product/2.webp';
 import prod3 from '../images/product/3.webp';
 import prod4 from '../images/product/4.webp';
+import prod5 from '../images/product/little-things-precious.jpg';
+
+const TEMP_PRODUCT_DETAIL = {
+  size: '100 x 210 mm',
+  storeUrl: 'https://smartstore.naver.com/',
+};
+
+const TEMP_KEYWORDS = ['감사', '선물', '일상', '캘리그라피'];
 
 const categories = [
   { id: 'all', label: 'ALL' },
@@ -63,12 +71,11 @@ const products = [
   },
   {
     id: 5,
-    category: 'envelope',
-    title: '은은한 펄 무드 봉투',
+    category: 'lifestyle',
+    title: 'Little Things More Precious',
     desc: '특별한 날을 더욱 빛내줄 고급스러운 펄 텍스처',
-    image: 'https://images.unsplash.com/photo-1598532213005-5225efd344d3?auto=format&fit=crop&q=80&w=600&grayscale',
-    year: 2021,
-    isPlaceholder: true,
+    image: prod5,
+    year: 2026,
   },
   {
     id: 6,
@@ -117,6 +124,10 @@ const Product = () => {
   const [yearRange, setYearRange] = useState({ min: 2016, max: 2026 });
   const [sortBy, setSortBy] = useState<'latest' | 'oldest'>('latest');
 
+  // Selected Product State for Modal
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -130,6 +141,27 @@ const Product = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle Escape key and scroll lock for Modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProduct(null);
+      }
+    };
+
+    if (selectedProduct) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProduct]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -141,6 +173,10 @@ const Product = () => {
       result = result.filter(p => p.category === activeCategory);
     }
 
+if (activeKeyword) {
+  result = result.filter(p => ((p as any).keywords ?? TEMP_KEYWORDS).includes(activeKeyword));
+}
+
     result = result.filter(p => p.year >= yearRange.min && p.year <= yearRange.max);
 
     result.sort((a, b) => {
@@ -148,19 +184,19 @@ const Product = () => {
     });
 
     return result;
-  }, [activeCategory, yearRange, sortBy]);
+  }, [activeCategory, activeKeyword, yearRange, sortBy]);
 
   return (
     <div className="bg-brand-bg min-h-screen">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-48 pb-12 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      <section className="pt-[92px] md:pt-40 pb-4 md:pb-8 px-6 md:px-12 lg:px-24 max-w-[2400px] mx-auto">
         <Reveal>
-          <div className="space-y-6">
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">Shop Our Collections</span>
+          <div className="space-y-1.5 md:space-y-4">
+            <span className="text-[11px] font-bold tracking-[0.3em] uppercase opacity-40">Shop Our Collections</span>
             <h1 className="text-4xl md:text-5xl font-serif tracking-tight leading-tight text-brand-ink/90">Products</h1>
-            <p className="text-lg opacity-60 serif-kor leading-relaxed max-w-2xl">
+            <p className="text-[14px] md:text-[18px] opacity-60 serif-kor leading-relaxed max-w-2xl">
               캘리그라피의 온기와 고유한 디자인이 담긴 <br />
               캘리엠의 제품들을 만나보세요.
             </p>
@@ -169,10 +205,10 @@ const Product = () => {
       </section>
 
       {/* Category Filter & Filter Toggle */}
-      <div className="bg-brand-bg border-b border-brand-ink/5 mb-12">
+      <div className="bg-brand-bg border-b border-brand-ink/5 mb-0 md:mb-8">
         <div className="max-w-7xl mx-auto px-6 md:px-9">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex gap-[20px] md:gap-8 overflow-x-auto no-scrollbar h-[50px] md:h-auto items-center">
+          <div className="flex justify-between items-center pt-6 pb-2">
+            <div className="flex gap-[20px] md:gap-8 overflow-x-auto no-scrollbar h-[40px] md:h-auto items-center">
               {categories.map((cat) => (
                 <button
                   key={cat.id}
@@ -282,13 +318,26 @@ const Product = () => {
           )}
         </AnimatePresence>
       </div>
+     
+      {activeKeyword && (
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-24 pt-4">
+          <button
+            type="button"
+            onClick={() => setActiveKeyword(null)}
+            className="inline-flex items-center gap-2 border border-brand-ink/15 px-3 py-1.5 text-[12px] font-medium text-brand-ink/70 hover:border-brand-accent hover:text-brand-accent transition-colors"
+          >
+            #{activeKeyword}
+            <X className="w-3 h-3" />
+          </button>
+        </div>
+      )}
 
       {/* Product Grid */}
-      <Section className="pb-32 pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
+      <Section className="pb-32 pt-3 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 lg:gap-x-10 lg:gap-y-16 max-w-[1800px] mx-auto">
           {filteredProducts.map((product, idx) => (
             <Reveal key={product.id} delay={(idx % 4) * 0.1}>
-              <div className="group cursor-pointer">
+              <div className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <div className="aspect-square overflow-hidden bg-brand-ink/5 mb-3 md:mb-4 relative transition-transform duration-500 group-hover:scale-[1.02]">
                   <img 
                     src={product.image} 
@@ -330,6 +379,112 @@ const Product = () => {
       </Section>
 
       <Footer />
+
+      {/* Product Detail Modal */}
+      <AnimatePresence>
+        {selectedProduct && (() => {
+          const detailImages = selectedProduct.images ?? [selectedProduct.image];
+          const activeCategoryLabel = categories.find(c => c.id === selectedProduct.category)?.label || '';
+          
+          return (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 overflow-y-auto">
+              {/* Background dim */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedProduct(null)}
+                className="fixed inset-0 bg-brand-ink/20 backdrop-blur-[3px] cursor-pointer"
+              />
+
+              {/* Content Box */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 30, scale: 0.98 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative bg-brand-bg w-full max-w-[960px] border border-brand-ink/10 shadow-2xl overflow-hidden z-10 my-8 flex flex-col md:flex-row md:h-[580px] overflow-y-auto md:overflow-hidden"
+              >
+                {/* Close Button */}
+                <button 
+                  onClick={() => setSelectedProduct(null)}
+                  className="absolute top-4 right-4 z-20 w-9 h-9 flex items-center justify-center rounded-full border border-brand-ink/10 bg-brand-bg/80 backdrop-blur-md opacity-60 hover:opacity-100 hover:border-brand-accent hover:text-brand-accent transition-all cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Left: Product Image */}
+                <div className="w-full md:w-[50%] h-[320px] md:h-full bg-brand-ink/[0.02] flex-shrink-0 relative overflow-hidden border-b md:border-b-0 md:border-r border-brand-ink/10">
+                  <img 
+                    src={detailImages[0]} 
+                    alt={selectedProduct.title} 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Right: Product Meta & Detail Info */}
+                <div className="w-full md:w-[50%] p-6 md:p-10 flex flex-col justify-between md:h-full overflow-y-auto">
+                  <div className="space-y-6 md:space-y-8">
+                    <div className="space-y-2 text-left">
+                      <span className="text-[10px] font-bold tracking-[0.2em] opacity-40 uppercase">
+                        {activeCategoryLabel} · {selectedProduct.year}
+                      </span>
+                      <h2 className="text-2xl md:text-[28px] font-serif tracking-tight leading-tight text-brand-ink/90 serif-kor break-keep">
+                        {selectedProduct.title}
+                      </h2>
+                    </div>
+
+                    <p className="text-[14px] leading-relaxed text-brand-ink/70 serif-kor break-keep whitespace-pre-line text-left">
+                      {selectedProduct.desc}
+                    </p>
+
+                    {/* Keywords */}
+                    <div className="space-y-2 text-left">
+                       <span className="block text-[9px] font-bold tracking-[0.18em] uppercase text-brand-ink/35">
+                         Keywords
+                       </span>
+                       <div className="flex flex-wrap gap-2">
+                         {TEMP_KEYWORDS.map(keyword => (
+                           <button
+                             key={keyword}
+                             type="button"
+                             onClick={() => {
+                               setActiveKeyword(keyword);
+                               setActiveCategory('all');
+                               setSelectedProduct(null);
+                             }}
+                             className="border border-brand-ink/15 px-3 py-1.5 text-[12px] font-medium text-brand-ink/70 hover:border-brand-accent hover:text-brand-accent transition-colors"
+                           >
+                             #{keyword}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+
+                    {/* Size Box */}
+                    <div className="border border-brand-ink/10 px-4 py-3 space-y-1 text-left">
+                      <span className="block text-[9px] font-bold tracking-[0.15em] opacity-40 uppercase">SIZE</span>
+                      <span className="block text-[13px] serif-kor text-brand-ink/80">{TEMP_PRODUCT_DETAIL.size}</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-8 md:pt-4">
+                    <a 
+                      href={TEMP_PRODUCT_DETAIL.storeUrl} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex items-center justify-center w-full border border-brand-ink/20 py-3.5 text-[11px] font-bold tracking-[0.2em] uppercase hover:border-brand-accent hover:text-brand-accent hover:bg-brand-ink/[0.01] transition-all duration-300"
+                    >
+                      네이버 스마트스토어 바로가기
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          );
+        })()}
+      </AnimatePresence>
 
       {/* Scroll to Top Button */}
       <AnimatePresence>
