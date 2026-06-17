@@ -1,12 +1,18 @@
-import { useEffect, Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { cn } from '../lib/utils';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Section, Reveal } from '../components/Common';
+import { journalList } from './journals/journalData';
 
-import heroImage from "../images/main/hero.webp";
+import heroImage from "../images/main/hero/hero.webp";
+import heroImage1 from "../images/main/hero/IMG_MAIN_NEW_01.jpg";
+import heroImage2 from "../images/main/hero/IMG_MAIN_NEW_02.jpg";
+import heroImage3 from "../images/main/hero/IMG_MAIN_NEW_03.jpg";
+import heroImage4 from "../images/main/hero/IMG_MAIN_NEW_05.jpg";
 import heroMobileImage from "../images/main/hero_mobile.webp";
 import mainMiddleProduct from "../images/main/product.jpg";
 import mainMiddleProductMobile from "../images/main/product_mobile.webp";
@@ -22,43 +28,124 @@ import mainBottomJournalMobile from "../images/main/journal_mobile.webp";
 // import journal03 from "../images/main/journal03.jpg"; // 저널 추가 이미지 예정
 
 
-const Hero = () => (
-  <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
-    <div className="absolute inset-0 z-0">
-      <img
-        src={heroMobileImage}
-        alt="Hero Background Mobile"
-        className="md:hidden w-full h-full object-cover object-center"
-      />
-      <img
-        src={heroImage}
-        alt="Hero Background"
-        className="hidden md:block w-full h-full object-cover object-center"
-      />
-    </div>
-    <div className="relative z-10 text-center px-6 max-w-[1500px] mx-auto">
-      <Reveal>
-        <h1 className="w-full md:w-[1500px] mx-auto text-[40px] md:text-[100px] font-serif italic mb-8 text-white leading-tight drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
-          Little Things, <br className="md:hidden" /> More Precious
-        </h1>
-      </Reveal>
-      <Reveal delay={0.2}>
-        <h2 className="text-[14px] md:text-[30px] font-bold mb-6 md:mb-10 serif-kor tracking-widest text-white/100 drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
-          아날로그의 온기로 <br className="md:hidden" />일상의 가치를 디자인합니다
-        </h2>
-      </Reveal>
-      <div className="hidden md:block">
-        <Reveal delay={0.4}>
-          <div className="w-40 h-[2px] bg-white/40 mx-auto mb-10" />
-          <p className="text-[19px] text-white/100 max-w-xl mx-auto leading-relaxed tracking-[0.1em] uppercase font-bold drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
-            소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
-            캘리엠이 전하는 따스한 시각 언어
-          </p>
-        </Reveal>
+const Hero = () => {
+  const images = [heroImage, heroImage1, heroImage2, heroImage3, heroImage4];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, [currentIndex, images.length]);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  return (
+    <section className="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroMobileImage}
+          alt="Hero Background Mobile"
+          className="md:hidden w-full h-full object-cover object-center"
+        />
+        <div className="hidden md:block w-full h-full relative">
+          <AnimatePresence mode="popLayout">
+            <motion.img
+              key={currentIndex}
+              src={images[currentIndex]}
+              alt={`Hero Background ${currentIndex + 1}`}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+            />
+          </AnimatePresence>
+        </div>
       </div>
-    </div>
-  </section>
-);
+
+      {/* Left Navigation Button */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-8 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white/50 hover:text-white active:scale-95 backdrop-blur-[1px] transition-all duration-500 cursor-pointer group"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+      </button>
+
+      {/* Right Navigation Button */}
+      <button
+        onClick={handleNext}
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-14 h-14 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/30 text-white/50 hover:text-white active:scale-95 backdrop-blur-[1px] transition-all duration-500 cursor-pointer group"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+      </button>
+
+      {/* Option 1: Elegant Line Connected Editorial Pagination */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center select-none">
+        <div className="flex items-center">
+          {images.map((_, idx) => (
+            <Fragment key={idx}>
+              {idx > 0 && (
+                <div className="w-8 h-[1px] bg-white/20 relative overflow-hidden mx-0.5 md:mx-1">
+                  <motion.div
+                    className="absolute inset-y-0 left-0 bg-white/80"
+                    initial={{ width: "0%" }}
+                    animate={{ width: currentIndex === idx ? "100%" : "0%" }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                  />
+                </div>
+              )}
+              <button
+                onClick={() => setCurrentIndex(idx)}
+                className={cn(
+                  "transition-all duration-500 ease-in-out cursor-pointer font-mono text-xs tracking-wider flex items-center justify-center w-8 h-8 rounded-full",
+                  currentIndex === idx
+                    ? "text-white opacity-100 font-bold scale-110 bg-white/5 border border-white/10"
+                    : "text-white opacity-40 hover:opacity-80"
+                )}
+              >
+                0{idx + 1}
+              </button>
+            </Fragment>
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-10 text-center px-6 max-w-[1500px] mx-auto pointer-events-none">
+        <div className="pointer-events-auto">
+          <Reveal>
+            <h1 className="w-full md:w-[1500px] mx-auto text-[40px] md:text-[100px] font-serif italic mb-8 text-white leading-tight drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+              Little Things, <br className="md:hidden" /> More Precious
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <h2 className="text-[14px] md:text-[30px] font-bold mb-6 md:mb-10 serif-kor tracking-widest text-white/100 drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+              아날로그의 온기로 <br className="md:hidden" />일상의 가치를 디자인합니다
+            </h2>
+          </Reveal>
+          <div className="hidden md:block">
+            <Reveal delay={0.4}>
+              <div className="w-40 h-[2px] bg-white/40 mx-auto mb-10" />
+              <p className="text-[19px] text-white/100 max-w-xl mx-auto leading-relaxed tracking-[0.1em] uppercase font-bold drop-shadow-[0_4px_14px_rgba(0,0,0,0.75)]">
+                소소한 일상의 기록부터 기업의 가치를 담는 브랜딩까지, <br />
+                캘리엠이 전하는 따스한 시각 언어
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const About = () => (
   <Section id="about" className="pt-10 pb-2 md:!pt-[150px] md:!pb-[150px]">
@@ -328,29 +415,7 @@ const BrandJournal = () => (
       </div>
 
       <div className="md:w-1/2 space-y-6 md:space-y-12 divide-y divide-brand-ink/5">
-        {[
-          {
-            date: "2026.04.23",
-            title: "가정의 달 기념 신상 봉투 출시",
-            desc: "5월, 가정의 달을 맞이하여 사랑을 전달할 수 있는 캘리엠의 봉투 4종을 제작하였습니다.",
-            link: "/journal/family-month-envelope"
-          },
-          {
-            date: "2026.01.15",
-            title: "2025 고양 인쇄인의 날, 고양 인쇄기술경진대회 금상 수상",
-            desc: "출품작인 '밀크티백 센트 형태의 인쇄패키지 작품'이 금상을 수상하였습니다."
-          },
-          {
-            date: "2025.03.17",
-            title: "중소기업혁신바우처 수행기관 브랜드 지원 최종 승인",
-            desc: "8개월간 진행된 브랜드 개발 프로젝트로 캘리엠의 브랜드 고유의 색을 더 깊이 있게 정의해보았습니다."
-          },
-          {
-            date: "2025.02.20",
-            title: "전시 참가: 시와 찻잔 사이 (교하도서관)",
-            desc: "1월 7일부터 23일까지 전시회가 진행됩니다."
-          }
-        ].map((item, idx) => (
+        {journalList.slice(0, 4).map((item, idx) => (
           <Reveal key={idx} delay={idx * 0.1}>
             <Link 
               to={item.link || '#'} 

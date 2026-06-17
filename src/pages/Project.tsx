@@ -9,8 +9,18 @@ import { useNavigate } from 'react-router-dom';
 
 import featuredImage from '../images/main/project.jpg';
 import literacyFeatured from '../images/project/literacy-art-exhibition/featured.webp';
+import goyangTeaFeatured from '../images/project/goyang-milktea/1-1.webp';
+import seongbukFeatured from '../images/journal/seongbuk-dong-postcard/seongbuk-dong-postcard (1).webp';
 
 const projectList = [
+  {
+    id: 11,
+    title: '성북동 엽서 프로젝트',
+    desc: '구도심의 오래된 골목과 일상의 따스함을 기록한 일러스트레이션 엽서 디자인 프로젝트입니다.',
+    image: seongbukFeatured,
+    year: 2025,
+    link: '/project/seongbuk-postcard',
+  },
   {
     id: 1,
     title: '성인문해교육 시화전',
@@ -22,10 +32,11 @@ const projectList = [
   },
   {
     id: 2,
-    title: '성인문해교육 시화전',
-    desc: '문해 학습자들의 시와 그림에 담긴 삶의 이야기를 따뜻한 시선으로 풀어낸 공공 디자인 프로젝트입니다.',
-    image: literacyFeatured,
+    title: '고양국제꽃박람회 밀크티백 세트',
+    desc: ' 고양의 소중한 순간을 담은 한정 기획 밀크티백 세트입니다',
+    image: goyangTeaFeatured,
     year: 2026,
+    link: '/project/goyang-flower-tea',
   },
   {
     id: 3,
@@ -312,19 +323,10 @@ const Project = () => {
       <Section className="pb-20 md:pb-32 pt-3 md:pt-[50px] !max-w-none px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-7 md:gap-y-24 text-left md:text-center max-w-[2400px] mx-auto">
           {filteredProjects.map((project, idx) => {
-            const thumbnailYOffsets = [
-              "lg:translate-y-0",
-              "lg:translate-y-12",
-              "lg:translate-y-24",
-            ];
-
             return (
              <Reveal key={project.id} delay={(idx % 3) * 0.1}>
               <div 
-                className={cn(
-                  "group cursor-pointer transition-transform duration-500",
-                  thumbnailYOffsets[idx % 3]
-                )}
+                className="group cursor-pointer transition-transform duration-500"
                 onClick={() => project.link && navigate(project.link)}
               >
                 <div className="aspect-[656.7/460] overflow-hidden bg-brand-ink/5 mb-3 md:mb-[20px] relative">
